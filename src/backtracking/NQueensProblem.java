@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NQueensProblem {
- 
+
   static List<int[]> positions = new ArrayList<int[]>();
 
   public static void main(String[] args) {
-    int boardSize = 1;
+    int boardSize = 4;
     boolean areAllQueensPlaced = placeQueens(0, boardSize);
     if (areAllQueensPlaced) {
       positions.forEach((position) -> {
@@ -22,25 +22,24 @@ public class NQueensProblem {
   public static boolean placeQueens(int queenNumber, int boardSize) {
     boolean isPlaced = false;
     boolean result;
-    for (int column = 0; column < boardSize; column++) {
-      result = isAttacked(queenNumber, column);
-
+    for (int i = 0; i < boardSize; i++) {
+      result = isAttacked(queenNumber, i);
       if (!result) {
         int[] position = new int[2];
         position[0] = queenNumber;
-        position[1] = column;
+        position[1] = i;
         positions.add(position);
-        if (positions.size() == boardSize) {
-          isPlaced = true;
-          break;
-        } else {
+        if (queenNumber < boardSize - 1) {
           result = placeQueens(queenNumber + 1, boardSize);
           if (result) {
             isPlaced = true;
             break;
           } else {
-            positions.remove(queenNumber);
+            positions.remove(positions.size() - 1);
           }
+        } else {
+          isPlaced = true;
+          break;
         }
       }
     }
@@ -49,27 +48,10 @@ public class NQueensProblem {
 
   public static boolean isAttacked(int x, int y) {
     boolean isAttacked = false;
-    for (int[] position : positions) {
-
-      // row attack check
-      if (position[0] == x) {
-        isAttacked = true;
-        break;
-      }
-      // column attack check
-      if (position[1] == y) {
-        isAttacked = true;
-        break;
-      }
-
-      // diagnol1 attack check
-      if ((position[0] - position[1]) == (x - y)) {
-        isAttacked = true;
-        break;
-      }
-
-      // diagnol2 attack check
-      if ((position[0] + position[1]) == (x + y)) {
+    for (int i = 0; i < positions.size(); i++) {
+      int X = positions.get(i)[0];
+      int Y = positions.get(i)[1];
+      if ((X == x) || (Y == y) || ((X + Y) == (x + y)) || ((X - Y) == (x - y))) {
         isAttacked = true;
         break;
       }
