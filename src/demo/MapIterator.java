@@ -1,6 +1,5 @@
 package demo;
 import java.util.*;
-import java.util.Map.Entry;
 
 public class MapIterator {
 
@@ -19,7 +18,7 @@ public class MapIterator {
       System.out.println("key: " + key + " " + "value: " + value);
     });
 
-    for (Entry<Integer, String> entry : map.entrySet()) {
+    for (Map.Entry<Integer, String> entry : map.entrySet()) {
       System.out.println("key: " + entry.getKey() + " " + "value: " + entry.getValue());
     }
   }

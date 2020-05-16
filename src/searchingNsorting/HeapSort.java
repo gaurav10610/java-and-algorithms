@@ -1,5 +1,6 @@
 package searchingNsorting;
 
+import java.util.Arrays;
 import library.HeapUtils;
 
 public class HeapSort {
@@ -19,9 +20,7 @@ public class HeapSort {
       HeapUtils.maxHeapify(arr, j, 0);
     }
 
-    for (int k = 0; k < size; k++)
-      System.out.print(arr[k] + " ");
-
+    System.out.print(Arrays.toString(arr));
   }
 
 }

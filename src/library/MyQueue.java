@@ -22,35 +22,46 @@ public class MyQueue {
     return front == 0 && rear == size - 1;
   }
 
-  public boolean enqueue(Object obj) {
+  public boolean enqueue(Object object) {
 
-    if (rear == -1) {
-      rear = 0;
-      front = 0;
-      queue[rear] = obj;
-      return true;
-    } else if (isFull()) {
-      return false;
+    boolean isObjectAdded = false;
+
+    if (isFull()) {
+      isObjectAdded = false;
     } else {
-      rear++;
-      queue[rear] = obj;
-      return true;
+
+      // when queue is empty
+      if (isEmpty()) {
+        rear = 0;
+        front = 0;
+      } else {
+
+        // when queue is not empty
+        rear++;
+      }
+      queue[rear] = object;
+      isObjectAdded = true;
     }
+    return isObjectAdded;
   }
 
   public Object dequeue() {
-    if (isEmpty()) {
-      return null;
-    } else {
-      Object object = queue[front];
+    Object object = null;
+
+    if (!isEmpty()) {
+      object = queue[front];
+
+      // when there was only one element in the queue
       if (front == rear) {
         front = -1;
         rear = -1;
       } else {
+
+        // when there was more than one element in the queue
         front++;
       }
-      return object;
     }
+    return object;
   }
 
   @Override

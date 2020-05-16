@@ -26,7 +26,7 @@ public class Trie {
       char c = string.charAt(i);
       TrieNode newNode;
 
-      // If trie already contains the children
+      // If trie does not contains the children
       if (!children.containsKey(c)) {
         newNode = new TrieNode();
         newNode.setC(c);
@@ -60,7 +60,7 @@ public class Trie {
    */
   public boolean searchPrefix(String prefix) {
     TrieNode node = searchNode(prefix);
-    return node == null ? false : true;
+    return node != null ? true : false;
   }
 
   private TrieNode searchNode(String string) {

@@ -48,9 +48,9 @@ public class NQueensProblem {
 
   public static boolean isAttacked(int x, int y) {
     boolean isAttacked = false;
-    for (int i = 0; i < positions.size(); i++) {
-      int X = positions.get(i)[0];
-      int Y = positions.get(i)[1];
+    for (int[] position : positions) {
+      int X = position[0];
+      int Y = position[1];
       if ((X == x) || (Y == y) || ((X + Y) == (x + y)) || ((X - Y) == (x - y))) {
         isAttacked = true;
         break;
