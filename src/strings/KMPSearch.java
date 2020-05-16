@@ -4,39 +4,53 @@ public class KMPSearch {
 
   public static void main(String[] args) {
 
-    String string = "ABABDABACDABABCABAB";
+    String text = "ABABDABACDABABCABAB";
     String pattern = "ABA";
-    searchPattern(string, pattern);
+    searchPattern(text, pattern);
   }
 
-  private static void searchPattern(String string, String pattern) {
+  /**
+   * pattern searching algorithm
+   * 
+   * @param text
+   * @param pattern
+   */
+  private static void searchPattern(String text, String pattern) {
 
     int[] lps = new int[pattern.length()];
+
+    /**
+     * computing lps array
+     */
     computeLPSArray(pattern, lps);
-    int i = 0; // For string
-    int j = 0; // For pattern
 
-    while (i < string.length()) {
+    int i = 0; // for iterating text string
+    int j = 0; // for iterating pattern
 
-      if (string.charAt(i) == pattern.charAt(j)) {
+    while (i < text.length()) {
+
+      if (text.charAt(i) == pattern.charAt(j)) {
         i++;
         j++;
       }
 
+      // pattern found
       if (j == pattern.length()) {
-        System.out.println("Pattern found at: " + (i - j));
+
+        System.out.println("pattern found at index: " + (i - j));
         j = lps[j - 1];
-      }
+      } else if (i < text.length() && text.charAt(i) != pattern.charAt(j)) {
 
-      else if (i < string.length() && string.charAt(i) != pattern.charAt(j)) {
-
+        // characters not matched after j matches
         if (j != 0) {
 
+          // if j is not pointing to start position i.e 0th index
           j = lps[j - 1];
         } else {
 
           i++;
         }
+
       }
     }
   }
@@ -49,32 +63,32 @@ public class KMPSearch {
    */
   private static void computeLPSArray(String pattern, int[] lps) {
 
-    // Previous longest prefix length
-    int longestPrefixLength = 0;
+    int j = 0;
     int i = 1;
     lps[0] = 0;
 
     while (i < pattern.length()) {
 
-      if (pattern.charAt(i) == pattern.charAt(longestPrefixLength)) {
-        longestPrefixLength++;
-        lps[i] = longestPrefixLength;
+      // when charcters match
+      if (pattern.charAt(j) == pattern.charAt(i)) {
+
+        j++;
+        lps[i] = j;
         i++;
-      } else { // pattern.charAt(i) != pattern.charAt(longestPrefixLength)
+      } else {
 
-        if (longestPrefixLength != 0) {
+        // if j is not pointing to start position i.e 0th index
+        if (j != 0) {
 
-          longestPrefixLength = lps[longestPrefixLength - 1];
-          // Also, note that we do not increment
-          // i here
-        } else { // if (longestPrefixLength == 0)
+          j = lps[j - 1];
+        } else {
 
-          lps[i] = longestPrefixLength;
+          lps[i] = 0;
           i++;
         }
+
       }
     }
-
   }
 
 }

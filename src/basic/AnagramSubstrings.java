@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnagramSubStrings {
+public class AnagramSubstrings {
 
   public static void main(String[] args) throws NumberFormatException, IOException {
 
@@ -52,21 +52,31 @@ public class AnagramSubStrings {
   // Return whether anagram or not
   public static boolean isAnagram(String string1, String string2) {
 
-    int[] arr = new int[256];
+    boolean areAnagramStrings = true;
+    int[] characterCountArray = new int[256];
 
-    for (int i = 0; i < string1.length(); i++) {
-      arr[(int) string1.charAt(i)]++;
+    if (string1.length() == string2.length()) {
+
+      for (char c : string1.toCharArray()) {
+        characterCountArray[(int) c]++;
+      }
+
+      for (char c : string2.toCharArray()) {
+        characterCountArray[(int) c]--;
+      }
+
+      for (int count : characterCountArray) {
+        if (count != 0) {
+          areAnagramStrings = false;
+          break;
+        }
+      }
+    } else {
+
+      areAnagramStrings = false;
     }
 
-    for (int k = 0; k < string2.length(); k++) {
-      arr[(int) string2.charAt(k)]--;
-    }
-
-    for (int s = 97; s < 123; s++) {
-      if (arr[s] != 0)
-        return false;
-    }
-    return true;
+    return areAnagramStrings;
   }
 
 }
