@@ -1,43 +1,40 @@
 package graphs;
 
 import java.util.Arrays;
+import java.util.List;
+import library.GraphEdge;
 import library.MyUnweightedGraph;
 
 public class CycleDetectionUsingDisjointSets {
 
   public static void main(String[] args) {
-    MyUnweightedGraph graph = new MyUnweightedGraph(8, true);
+    MyUnweightedGraph graph = new MyUnweightedGraph(8, false);
 
-    graph.addVetrtex("A");
-    graph.addVetrtex("B");
-    graph.addVetrtex("C");
-    graph.addVetrtex("D");
-    graph.addVetrtex("E");
-    graph.addVetrtex("F");
-    graph.addVetrtex("G");
-    graph.addVetrtex("H");
-
-    graph.addEdge("A", "B");
-    graph.addEdge("B", "C");
-    graph.addEdge("C", "D");
-    graph.addEdge("D", "A");
-    graph.addEdge("D", "E");
-    graph.addEdge("E", "F");
-    graph.addEdge("F", "G");
-    graph.addEdge("G", "H");
-    graph.addEdge("H", "E");
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 0);
+    graph.addEdge(3, 4);
+    graph.addEdge(4, 5);
+    graph.addEdge(5, 6);
+    graph.addEdge(6, 7);
+    graph.addEdge(7, 4);
 
     printNumberOfCycles(graph);
   }
 
   public static void printNumberOfCycles(MyUnweightedGraph graph) {
     int numberOfCycles = 0;
-    int[] setArray = new int[graph.getTotalVertices()];
+    int[] setArray = new int[graph.getTotalNodes()];
     Arrays.fill(setArray, -1);
 
-    for (String[] edge : graph.getAllEdges()) {
-      int parent1 = findParent(graph.getVertexIndex(edge[0]), setArray);
-      int parent2 = findParent(graph.getVertexIndex(edge[1]), setArray);
+    List<GraphEdge> edges = graph.getAllEdges();
+
+    for (GraphEdge edge : edges) {
+
+      int parent1 = findParent(edge.getStartIndex(), setArray);
+      int parent2 = findParent(edge.getEndIndex(), setArray);
+
       if (parent1 == parent2) {
         numberOfCycles++;
       } else {

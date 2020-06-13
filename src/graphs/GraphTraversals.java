@@ -7,26 +7,28 @@ import library.MyUnweightedGraph;
 public class GraphTraversals {
 
   public static void main(String[] args) {
-    MyUnweightedGraph graph = new MyUnweightedGraph(5, false);
 
-    // Add vertices
-    graph.addVetrtex("A");
-    graph.addVetrtex("B");
-    graph.addVetrtex("C");
-    graph.addVetrtex("D");
-    graph.addVetrtex("E");
+    MyUnweightedGraph graph = new MyUnweightedGraph(8, false);
 
-    // Add edges
-    graph.addEdges("A", Arrays.asList("B", "E"));
-    graph.addEdges("B", Arrays.asList("A", "C", "D"));
-    graph.addEdges("C", Arrays.asList("B", "D", "E"));
-    graph.addEdges("D", Arrays.asList("B", "C"));
-    graph.addEdges("E", Arrays.asList("A", "C"));
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 0);
+    graph.addEdge(3, 4);
+    graph.addEdge(4, 5);
+    graph.addEdge(5, 6);
+    graph.addEdge(6, 7);
+    graph.addEdge(7, 4);
 
-    System.out.println("BFS Traversal: ");
-    GraphUtils.BFS(graph, "D");
-    System.out.println("\nIterative DFS Traversal: ");
-    GraphUtils.iterativeDFS(graph, "E");
+    GraphUtils.BreadthFirstTraversal(graph, 0);
+
+    GraphUtils.iterativeDepthFirstTraversal(graph, 0);
+
+    System.out.print("Recursive Depth First Traversal: ");
+
+    boolean[] visitedArray = new boolean[graph.getTotalNodes()];
+    Arrays.fill(visitedArray, false);
+    GraphUtils.recursiveDepthFirstTraversal(graph, 0, visitedArray);
   }
 
 }

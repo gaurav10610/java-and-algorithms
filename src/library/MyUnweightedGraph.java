@@ -1,7 +1,7 @@
 package library;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -13,101 +13,96 @@ import java.util.List;
 public class MyUnweightedGraph {
 
   private List<Integer>[] graphAdjacencyList;
-  private List<String> vertexIndices;
-  private int totalVertices;
+  private int totalNodes;
   private boolean isDirected;
+  private List<Integer> allNodes;
 
   @SuppressWarnings("unchecked")
-  public MyUnweightedGraph(int totalVertices,boolean isDirected) {
-    this.totalVertices = totalVertices;
-    graphAdjacencyList = new LinkedList[totalVertices];
-    vertexIndices = new ArrayList<String>();
+  public MyUnweightedGraph(int totalNodes, boolean isDirected) {
+    this.graphAdjacencyList = new ArrayList[totalNodes];
     this.isDirected = isDirected;
+    this.totalNodes = totalNodes;
 
-    for (int i = 0; i < graphAdjacencyList.length; i++) {
-      graphAdjacencyList[i] = new LinkedList<Integer>();
+    // initialize with empty array list
+    for (int i = 0; i < totalNodes; i++) {
+      graphAdjacencyList[i] = new ArrayList<Integer>();
     }
+
   }
 
-  public int getVertexIndex(String node) {
-    return vertexIndices.indexOf(node);
+  public List<Integer> getAllNodes() {
+
+    if (allNodes == null) {
+      allNodes = new ArrayList<Integer>();
+      int nodeIndex = 0;
+
+      while (nodeIndex < totalNodes) {
+        allNodes.add(nodeIndex);
+        nodeIndex++;
+      }
+    }
+    return allNodes;
   }
 
-  public int getTotalVertices() {
-    return totalVertices;
+  public int getTotalNodes() {
+    return totalNodes;
   }
 
-  public String getNodeFromIndex(int index) {
-    return vertexIndices.get(index);
-  }
-
-  // Add a new vertex
-  public void addVetrtex(String vertex) {
-    vertexIndices.add(vertex);
-  }
-
-  public boolean isConnected(String node1, String node2) {
-    return graphAdjacencyList[vertexIndices.indexOf(node1)].contains(vertexIndices.indexOf(node2))
-        ? true
-        : false;
+  public boolean isConnected(Integer node1Index, Integer node2Index) {
+    return graphAdjacencyList[node1Index].contains(node2Index) ? true : false;
   }
 
   // Add an edge
-  public void addEdge(String node1, String node2) {
-    int node1Index = vertexIndices.indexOf(node1);
-    int node2Index = vertexIndices.indexOf(node2);
-
-    if (!graphAdjacencyList[node1Index].contains(node2Index))
+  public void addEdge(Integer node1Index, Integer node2Index) {
+    if (!graphAdjacencyList[node1Index].contains(node2Index)) {
       graphAdjacencyList[node1Index].add(node2Index);
+    }
 
-    if (!isDirected && !graphAdjacencyList[node2Index].contains(node1Index))
+    if (!isDirected && !graphAdjacencyList[node2Index].contains(node1Index)) {
       graphAdjacencyList[node2Index].add(node1Index);
+    }
   }
 
-  // Add edges in the graph
-  public void addEdges(String node1, List<String> nodes) {
-    int node1Index = vertexIndices.indexOf(node1);
-
-    nodes.forEach((node) -> {
-      int nodeIndex = vertexIndices.indexOf(node);
-      if (!graphAdjacencyList[node1Index].contains(nodeIndex))
-        graphAdjacencyList[node1Index].add(nodeIndex);
-
-      if (!graphAdjacencyList[nodeIndex].contains(node1Index))
-        graphAdjacencyList[nodeIndex].add(node1Index);
-    });
+  public void addEdges(Integer node1Index, List<Integer> nodes) {
+    for (Integer node2Index : nodes) {
+      addEdge(node1Index, node2Index);
+    }
   }
 
-  // Remove an edge
-  public void removeEdge(String node1, String node2) {
-    int node1Index = vertexIndices.indexOf(node1);
-    int node2Index = vertexIndices.indexOf(node2);
-
-    graphAdjacencyList[node1Index].remove(node2Index);
-    graphAdjacencyList[node2Index].remove(node1Index);
-  }
-
-  // Returns all adjacent
-  public List<Integer> getAdjacents(String node) {
-    int nodeIndex = vertexIndices.indexOf(node);
+  public List<Integer> getAdjacents(Integer nodeIndex) {
     return graphAdjacencyList[nodeIndex];
   }
 
-  public List<String> getAllVertices() {
-    return vertexIndices;
-  }
+  public List<GraphEdge> getAllEdges() {
+    List<GraphEdge> edgeList = new ArrayList<GraphEdge>();
 
-  public List<String[]> getAllEdges() {
-    List<String[]> edgeList = new ArrayList<String[]>();
-    for (int i = 0; i < vertexIndices.size(); i++) {
-      List<Integer> adjacentsList = graphAdjacencyList[i];
-      for (Integer adjacentNode : adjacentsList) {
-        String[] edge = new String[2];
-        edge[0] = vertexIndices.get(i);
-        edge[1] = vertexIndices.get(adjacentNode);
-        edgeList.add(edge);
+    int nodeIndex = 0;
+    for (List<Integer> adjacentsNodes : graphAdjacencyList) {
+
+      if (!adjacentsNodes.isEmpty()) {
+
+        for (Integer adjacentNodeIndex : adjacentsNodes) {
+          GraphEdge edge = new GraphEdge(nodeIndex, adjacentNodeIndex, isDirected);
+
+          if (isDirected) {
+
+            edgeList.add(edge);
+          } else {
+
+            // add edge in the list if it is not considered yet
+            if (!edgeList.contains(edge)) {
+              edgeList.add(edge);
+            }
+          }
+        }
       }
+      nodeIndex++;
     }
     return edgeList;
+  }
+
+  @Override
+  public String toString() {
+    return Arrays.toString(graphAdjacencyList);
   }
 }
