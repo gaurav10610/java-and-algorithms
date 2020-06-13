@@ -1,23 +1,9 @@
 package library;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TreeUtils {
-
-  public static TreeNode buildBinaryTreeFromArray(int[] array, int i, int blankInteger) {
-
-    TreeNode node = null;
-
-    // Base case for recursion
-    if (i < array.length && array[i] != blankInteger) {
-      node = new TreeNode(array[i]);
-
-      // insert left child
-      node.setLeftChild(buildBinaryTreeFromArray(array, (2 * i + 1), blankInteger));
-
-      // insert right child
-      node.setRightChild(buildBinaryTreeFromArray(array, (2 * i + 2), blankInteger));
-    }
-    return node;
-  }
 
   // Function to print tree nodes in InOrder fashion
   public static void printInOrderTraversal(TreeNode root) {
@@ -41,6 +27,24 @@ public class TreeUtils {
       printPostOrderTraversal(root.getLeftChild());
       printPostOrderTraversal(root.getRightChild());
       System.out.print(root.getValue() + " ");
+    }
+  }
+
+  public static void printLevelOrderTraversal(TreeNode root) {
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+
+    while (!queue.isEmpty()) {
+      TreeNode node = queue.poll();
+      System.out.print(node.getValue() + " ");
+
+      if (node.getLeftChild() != null) {
+        queue.add(node.getLeftChild());
+      }
+
+      if (node.getRightChild() != null) {
+        queue.add(node.getRightChild());
+      }
     }
   }
 }

@@ -1,21 +1,9 @@
-package graphs;
+package tree;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import library.GraphUtils;
-import library.MyQueue;
 import library.TreeNode;
 import library.TreeUtils;
 
-/**
- * Dist(n1, n2) = Dist(root, n1) + Dist(root, n2) - 2*Dist(root, lca)
- * 
- * @author Gaurav
- *
- */
-public class MinDistanceBetweenTreeNodes {
+public class TreeTraversals {
 
   public static void main(String[] args) {
 
@@ -40,16 +28,21 @@ public class MinDistanceBetweenTreeNodes {
     node5.setRightChild(node9);
     node7.setLeftChild(node10);
 
-//    System.out.println("Minimum distance is " + getMinDistance(array, 10, 15));
-  }
+    System.out.println("Inorder traversal: ");
+    TreeUtils.printInOrderTraversal(node1);
+    System.out.println();
 
-  public static int getMinDistance(int[] array, int node1, int node2) {
-    return -1;
-  }
+    System.out.println("Preorder traversal: ");
+    TreeUtils.printPreOrderTraversal(node1);
+    System.out.println();
 
-  public static int findNodeIndex(int nodeValue, int[] treeArray) {
+    System.out.println("Postorder traversal: ");
+    TreeUtils.printPostOrderTraversal(node1);
+    System.out.println();
 
-    return -1;
+    System.out.println("Levelorder traversal: ");
+    TreeUtils.printLevelOrderTraversal(node1);
+    System.out.println();
   }
 
 }
