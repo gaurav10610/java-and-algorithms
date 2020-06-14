@@ -2,6 +2,7 @@ package library;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class TreeUtils {
 
@@ -46,5 +47,59 @@ public class TreeUtils {
         queue.add(node.getRightChild());
       }
     }
+  }
+
+  public static boolean findNodePathFromRoot(TreeNode root, int nodeValue, Stack<TreeNode> path) {
+
+    if (root == null) {
+
+      return false;
+    } else {
+
+      // add current node in path
+      path.add(root);
+
+      if (root.getValue() == nodeValue) {
+        return true;
+      }
+
+      boolean foundOnLeft = findNodePathFromRoot(root.getLeftChild(), nodeValue, path);
+
+      if (foundOnLeft) {
+        return true;
+      }
+
+      boolean foundOnRight = findNodePathFromRoot(root.getRightChild(), nodeValue, path);
+
+      if (foundOnRight) {
+        return true;
+      }
+
+      // not found among the descendents of this node
+      path.pop();
+
+      return false;
+    }
+  }
+
+  public static TreeNode findLowestCommonAncestor(TreeNode root, int nodeValue1, int nodeValue2,
+      Stack<TreeNode> rootToNode1Path, Stack<TreeNode> rootToNode2Path) {
+
+    TreeNode lca = null;
+
+    int i = 0;
+    while (i < rootToNode1Path.size() && i < rootToNode2Path.size()) {
+
+      if (rootToNode1Path.get(i).getValue() == rootToNode2Path.get(i).getValue()) {
+
+        lca = rootToNode1Path.get(i);
+      } else {
+
+        break;
+      }
+      i++;
+    }
+
+    return lca;
   }
 }

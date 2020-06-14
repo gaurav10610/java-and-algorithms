@@ -5,7 +5,7 @@ public class KMPSearch {
   public static void main(String[] args) {
 
     String text = "ABABDABACDABABCABAB";
-    String pattern = "ABA";
+    String pattern = "ABAB";
     searchPattern(text, pattern);
   }
 
@@ -29,28 +29,24 @@ public class KMPSearch {
 
     while (i < text.length()) {
 
-      if (text.charAt(i) == pattern.charAt(j)) {
+      if (pattern.charAt(j) == text.charAt(i)) {
         i++;
         j++;
       }
 
-      // pattern found
       if (j == pattern.length()) {
 
-        System.out.println("pattern found at index: " + (i - j));
+        System.out.println("Pattern found at: " + (i - j));
         j = lps[j - 1];
       } else if (i < text.length() && text.charAt(i) != pattern.charAt(j)) {
 
-        // characters not matched after j matches
         if (j != 0) {
 
-          // if j is not pointing to start position i.e 0th index
           j = lps[j - 1];
         } else {
 
           i++;
         }
-
       }
     }
   }
@@ -69,15 +65,13 @@ public class KMPSearch {
 
     while (i < pattern.length()) {
 
-      // when charcters match
-      if (pattern.charAt(j) == pattern.charAt(i)) {
+      if (pattern.charAt(i) == pattern.charAt(j)) {
 
         j++;
         lps[i] = j;
         i++;
       } else {
 
-        // if j is not pointing to start position i.e 0th index
         if (j != 0) {
 
           j = lps[j - 1];
@@ -86,7 +80,6 @@ public class KMPSearch {
           lps[i] = 0;
           i++;
         }
-
       }
     }
   }

@@ -4,7 +4,13 @@ import java.util.Stack;
 import library.TreeNode;
 import library.TreeUtils;
 
-public class FindLowestCommonAncestorInTree {
+/**
+ * Dist(n1, n2) = Dist(root, n1) + Dist(root, n2) - 2*Dist(root, lca)
+ * 
+ * @author Gaurav
+ *
+ */
+public class MinDistanceBetweenTwoNodesInTree {
 
   public static void main(String[] args) {
 
@@ -29,9 +35,8 @@ public class FindLowestCommonAncestorInTree {
     node5.setRightChild(node9);
     node7.setLeftChild(node10);
 
-    int nodeValue1 = 4;
-
-    int nodeValue2 = 9;
+    int nodeValue1 = 8;
+    int nodeValue2 = 10;
 
     Stack<TreeNode> rootToNode1Path = new Stack<TreeNode>();
 
@@ -54,15 +59,19 @@ public class FindLowestCommonAncestorInTree {
     TreeNode lca = TreeUtils.findLowestCommonAncestor(node1, nodeValue1, nodeValue2,
         rootToNode1Path, rootToNode2Path);
 
-    if (lca != null) {
-
-      System.out.println("Lowest Common Ancestor of nodes with values: " + nodeValue1 + " and "
-          + nodeValue2 + " is: " + lca.getValue());
-    } else {
-
+    if (lca == null) {
       System.out.println("Lowest Common Ancestor not found");
+      return;
     }
-  }
 
+    Stack<TreeNode> rootToLcaPath = new Stack<TreeNode>();
+    TreeUtils.findNodePathFromRoot(node1, lca.getValue(), rootToLcaPath);
+
+    int minimumDistance =
+        rootToNode1Path.size() - 1 + rootToNode2Path.size() - 1 - 2 * (rootToLcaPath.size() - 1);
+
+    System.out.println("Minimum distance between nodes " + nodeValue1 + " and " + nodeValue2
+        + " is: " + minimumDistance);
+  }
 
 }

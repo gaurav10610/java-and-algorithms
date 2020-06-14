@@ -15,11 +15,8 @@ public class CountingSort {
       countArray[x]++;
     }
 
-    /*
-     * Change count[i] so that count[i] now contains actual position of this element in output array
-     */
-    for (int x = 1; x < countArray.length; x++) {
-      countArray[x] = countArray[x] + countArray[x - 1];
+    for (int i = 1; i < countArray.length; i++) {
+      countArray[i] = countArray[i] + countArray[i - 1];
     }
 
     for (int x : array) {
@@ -27,9 +24,7 @@ public class CountingSort {
       countArray[x]--;
     }
 
-    for (int x : sortedArray) {
-      System.out.print(x + " ");
-    }
+    System.out.print(Arrays.toString(sortedArray));
   }
 
 }
