@@ -3,6 +3,11 @@ package searchingNsorting;
 import library.ListNode;
 import library.ListUtils;
 
+/**
+ * Incomplete 
+ * @author Gaurav
+ *
+ */
 public class QuickSortLikedList {
   static int[] array = {12, 11, 13, 5, 6, 7};
   static ListNode root = null;
