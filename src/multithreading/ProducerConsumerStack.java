@@ -35,10 +35,6 @@ public class ProducerConsumerStack {
 
     t1.start();
     t2.start();
-
-    // t1 finishes before t2
-    t1.join();
-    t2.join();
   }
 
 }
@@ -63,6 +59,7 @@ class ProduceConsume {
           wait();
         }
         numbers.push(++value);
+        System.out.println("Produced " + value + " in stack");
         notify();
         Thread.sleep(1000);
       }
@@ -76,7 +73,7 @@ class ProduceConsume {
           wait();
         }
         Integer number = numbers.pop();
-        System.out.println("Popped " + number + " from stack.");
+        System.out.println("Consumed " + number + " from stack.");
         notify();
         Thread.sleep(1000);
       }

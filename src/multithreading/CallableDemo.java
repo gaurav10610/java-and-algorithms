@@ -12,18 +12,13 @@ public class CallableDemo {
 
     for (int i = 0; i < 5; i++) {
       futureTasks[i] = new FutureTask<Integer>(new CallableTask());
-
       Thread t = new Thread(futureTasks[i]);
       t.start();
     }
-    
-    int k = 0;
-    for (FutureTask<?> result : futureTasks) {
-      System.out.println("Value at result at " + k + " : " + result.get());
-      k++;
+
+    for (int i = 0; i < 5; i++) {
+      System.out.println("Value of result[" + i + "] = " + futureTasks[i].get());
     }
-    
-    System.out.println("This is the main thread.");
   }
 
 }
