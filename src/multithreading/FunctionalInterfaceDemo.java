@@ -1,4 +1,4 @@
-package threads;
+package multithreading;
 
 public class FunctionalInterfaceDemo {
 
