@@ -1,10 +1,11 @@
 package multithreading;
 
 import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 public class CyclicBarrierDemo extends Thread {
 
-  static java.util.concurrent.CyclicBarrier barrier = new java.util.concurrent.CyclicBarrier(4);
+  static CyclicBarrier barrier = new CyclicBarrier(4);
 
   public static void main(String[] args) {
     CyclicBarrierDemo thread = new CyclicBarrierDemo();
