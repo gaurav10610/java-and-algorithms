@@ -10,10 +10,6 @@ public class ShortestDistanceInGrid {
   public static void main(String[] args) {
     ShortestDistanceInGrid obj = new ShortestDistanceInGrid();
     List<List<Integer>> grid = new ArrayList<List<Integer>>();
-//    grid.add(Arrays.asList(1, 0, 0, 9));
-//    grid.add(Arrays.asList(1, 1, 1, 0));
-//    grid.add(Arrays.asList(1, 0, 0, 1));
-//    grid.add(Arrays.asList(1, 1, 1, 1));
     
     grid.add(Arrays.asList(0, 1, 0, 1));
     grid.add(Arrays.asList(1, 0, 1, 1));

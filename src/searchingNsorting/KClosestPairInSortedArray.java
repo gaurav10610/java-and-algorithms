@@ -5,7 +5,6 @@ public class KClosestPairInSortedArray {
   public static void main(String[] args) {
     int[] array = {12, 16, 22, 30, 35, 39, 42, 45, 48, 50, 53, 55, 56};
     int x = 35, k = 4;
-    // System.out.print(findCrossOver(array, 0, array.length - 1, 42));
     printKclosest(array, x, k, array.length);
   }
 
@@ -52,6 +51,7 @@ public class KClosestPairInSortedArray {
   /*
    * Function to find the cross over point (the point before which elements are smaller than or
    * equal to x and after which greater than x)
+   * 
    */
   public static int findCrossOver(int arr[], int low, int high, int x) {
     // Base cases
@@ -71,9 +71,9 @@ public class KClosestPairInSortedArray {
      * If x is greater than arr[mid], then either arr[mid + 1] is ceiling of x or ceiling lies in
      * arr[mid+1...high]
      */
-    if (arr[mid] < x)
+    if (arr[mid] < x) {
       return findCrossOver(arr, mid + 1, high, x);
-
+    }
     return findCrossOver(arr, low, mid - 1, x);
   }
 
