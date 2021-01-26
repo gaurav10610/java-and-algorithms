@@ -1,13 +1,18 @@
 package library;
 
-public class MyQueue {
+/**
+ * 
+ * custom queue impementation using array
+ *
+ */
+public class MyCustomQueue {
 
   private int size;
   private Object[] queue;
   private int front;
   private int rear;
 
-  public MyQueue(int size) {
+  public MyCustomQueue(int size) {
     this.size = size;
     front = -1;
     rear = -1;

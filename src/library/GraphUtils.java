@@ -1,6 +1,8 @@
 package library;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class GraphUtils {
@@ -72,19 +74,19 @@ public class GraphUtils {
     boolean[] visitedArray = new boolean[graph.getTotalNodes()];
     Arrays.fill(visitedArray, false);
 
-    MyQueue queue = new MyQueue(graph.getTotalNodes());
-    queue.enqueue(rootNodeIndex);
+    Queue<Integer> queue = new LinkedList<Integer>();
+    queue.add(rootNodeIndex);
     visitedArray[rootNodeIndex] = true;
 
     while (!queue.isEmpty()) {
 
-      Integer visitedNode = (Integer) queue.dequeue();
+      Integer visitedNode = queue.poll();
       System.out.print(visitedNode + "->");
 
       for (Integer adjacentNode : graph.getAdjacents(visitedNode)) {
 
         if (!visitedArray[adjacentNode]) {
-          queue.enqueue(adjacentNode);
+          queue.add(adjacentNode);
           visitedArray[adjacentNode] = true;
         }
       }

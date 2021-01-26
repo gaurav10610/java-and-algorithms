@@ -5,6 +5,11 @@ import java.util.List;
 import library.GraphEdge;
 import library.MyUnweightedGraph;
 
+/**
+ * 
+ * find cycles in a graph using disjoint sets 
+ *
+ */
 public class CycleDetectionUsingDisjointSets {
 
   public static void main(String[] args) {
