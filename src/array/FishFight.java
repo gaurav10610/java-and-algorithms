@@ -1,7 +1,6 @@
 package array;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -102,8 +101,6 @@ public class FishFight {
        * 
        */
       if (!isEaten) {
-//        String direction = swimDirection[i] == -1 ? "<-" : "->";
-        System.out.println("selected fish: " + direction + fishSizes[i]);
         remainingFishes.add(fishSizes[i]);
         remainingFishDirection.add(swimDirection[i]);
       }
