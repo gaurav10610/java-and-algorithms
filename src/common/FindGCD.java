@@ -1,4 +1,4 @@
-package basic;
+package common;
 
 public class FindGCD {
 
