@@ -14,8 +14,8 @@ public class ConcatenateStringByComma {
 
   public static void main(String[] args) {
     List<String> list = Arrays.asList("abc", "", "bc", "efg", "abcd", "", "jkl");
-    String resultString = list.stream().filter((string) -> string.length() > 0).reduce(list.get(0),
-        (string1, string2) -> string1 + "," + string2);
+    String resultString = list.stream().filter((string) -> string.length() > 0)
+        .reduce((string1, string2) -> string1 + "," + string2).get();
     System.out.print(resultString);
   }
 
