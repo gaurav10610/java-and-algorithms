@@ -10,11 +10,18 @@ import java.util.Set;
  * the list. A duplicate is identified as a same value if it exist within K distance. Refer below
  * examples -
  * 
- * Input - [1,2,1,3,4,5,6], (K = 3) Output - 1 -> Explaination: only 1 have duplicate values within
- * K distance
+ * Input - [1,2,1,3,4,5,6], (K = 3)
  * 
- * Input - [1,2,3,4,5,1, 6], (K = 3) Output - Print Nothing -> Explaination: No number have
- * duplicate values within K distance
+ * Output - 1
+ * 
+ * Explaination: only 1 have duplicate values within K distance
+ * 
+ * 
+ * Input - [1,2,3,4,5,1, 6], (K = 3)
+ * 
+ * Output - Print Nothing
+ * 
+ * Explaination: No number have duplicate values within K distance
  *
  */
 public class CheckDuplicatesWithKDistance {
