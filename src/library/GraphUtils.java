@@ -67,7 +67,7 @@ public class GraphUtils {
    * @param graph
    * @param root
    */
-  public static void BreadthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex) {
+  public static void breadthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex) {
 
     System.out.print("Breadth First Traversal: ");
 

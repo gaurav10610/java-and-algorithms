@@ -20,7 +20,7 @@ public class GraphTraversals {
     graph.addEdge(6, 7);
     graph.addEdge(7, 4);
 
-    GraphUtils.BreadthFirstTraversal(graph, 0);
+    GraphUtils.breadthFirstTraversal(graph, 0);
 
     GraphUtils.iterativeDepthFirstTraversal(graph, 0);
 

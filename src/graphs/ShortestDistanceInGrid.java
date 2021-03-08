@@ -15,7 +15,6 @@ import java.util.Queue;
 public class ShortestDistanceInGrid {
 
   public static void main(String[] args) {
-    ShortestDistanceInGrid obj = new ShortestDistanceInGrid();
     List<List<Integer>> grid = new ArrayList<List<Integer>>();
 
     int X = 9;
@@ -25,10 +24,27 @@ public class ShortestDistanceInGrid {
     grid.add(Arrays.asList(0, 1, 1, 1));
     grid.add(Arrays.asList(9, 1, 1, 1));
 
-    GridPosition source = new GridPosition(0, 0);
-//    GridPosition source = new GridPosition(2, 3);
-    
-    int cost = obj.minDistance(4, 4, grid, source, X);
+    int numRows = grid.size();
+    int numColumns = grid.get(0).size();
+
+    boolean[][] visited = new boolean[numRows][numColumns];
+
+    /**
+     * mark all blocked places as visited
+     * 
+     */
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numColumns; j++) {
+        if (grid.get(i).get(j) == 0) {
+          visited[i][j] = true;
+        }
+      }
+    }
+
+    // GridPosition source = new GridPosition(0, 0);
+    GridPosition source = new GridPosition(2, 3);
+
+    int cost = findMinimumDistance(numRows, numColumns, grid, source, X, visited);
 
     if (cost < 0) {
       System.out.print(
@@ -43,27 +59,19 @@ public class ShortestDistanceInGrid {
    * find minimum distance/cost from given source to destination with value X
    * 
    */
-  public int minDistance(int numRows, int numColumns, List<List<Integer>> grid, GridPosition source,
-      int X) {
-    boolean[][] visited = new boolean[numRows][numColumns];
-    int[][] costMatrix = new int[numRows][numColumns];
+  public static int findMinimumDistance(int numRows, int numColumns, List<List<Integer>> grid,
+      GridPosition source, int X, boolean[][] visited) {
 
     /**
-     * mark all blocked places as visited
      * 
+     * this will keep the minimum cost of reaching to any node
      */
-    for (int i = 0; i < numRows; i++) {
-      for (int j = 0; j < numColumns; j++) {
-        if (grid.get(i).get(j) == 0) {
-          visited[i][j] = true;
-        }
-      }
-    }
+    int[][] distanceMatrix = new int[numRows][numColumns];
 
     Queue<GridPosition> queue = new LinkedList<GridPosition>();
     queue.add(source);
     visited[source.x][source.y] = true;
-    costMatrix[source.x][source.y] = 0;
+    distanceMatrix[source.x][source.y] = 0;
 
     while (!queue.isEmpty()) {
 
@@ -79,11 +87,11 @@ public class ShortestDistanceInGrid {
        * 
        */
       if (grid.get(currentPosition.x).get(currentPosition.y) == X) {
-        return costMatrix[currentPosition.x][currentPosition.y];
+        return distanceMatrix[currentPosition.x][currentPosition.y];
       }
 
       /**
-       * get all the adjacents
+       * get all the adjacents non-blocked grid positions
        * 
        */
       List<GridPosition> adjacents = getAdjacents(numRows, numColumns, currentPosition);
@@ -101,7 +109,13 @@ public class ShortestDistanceInGrid {
            * 
            */
           visited[adjacent.x][adjacent.y] = true;
-          costMatrix[adjacent.x][adjacent.y] = costMatrix[currentPosition.x][currentPosition.y] + 1;
+
+          /**
+           * 
+           * store the shortest distance in the distance matrix
+           */
+          distanceMatrix[adjacent.x][adjacent.y] =
+              distanceMatrix[currentPosition.x][currentPosition.y] + 1;
           queue.add(adjacent);
         }
       }
@@ -113,7 +127,8 @@ public class ShortestDistanceInGrid {
    * return all possible combinations
    * 
    */
-  public List<GridPosition> getAdjacents(int numRows, int numColumns, GridPosition position) {
+  public static List<GridPosition> getAdjacents(int numRows, int numColumns,
+      GridPosition position) {
     List<GridPosition> list = new ArrayList<GridPosition>();
     if ((position.x - 1) >= 0 && (position.y) < numColumns) {
       list.add(new GridPosition(position.x - 1, position.y));
