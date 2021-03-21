@@ -26,4 +26,19 @@ public class ArrayUtils {
     array[index1] = array[index2];
     array[index2] = temp;
   }
+
+  /**
+   * build an integer array from provided string containing space separated numbers
+   * 
+   * @return
+   */
+  public static int[] getIntegerArrayFromString(String string) {
+    String[] numbers = string.split(" ");
+    int[] numArray = new int[numbers.length];
+
+    for (int i = 0; i < numbers.length; i++) {
+      numArray[i] = Integer.parseInt(numbers[i]);
+    }
+    return numArray;
+  }
 }
