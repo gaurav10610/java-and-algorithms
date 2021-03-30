@@ -37,9 +37,9 @@ public class ReverseStackUsingRecursion {
 
   public static void reverseStack(Stack<Integer> stack) {
     if (!stack.isEmpty()) {
-      int poppedElement = stack.pop();
+      int topElement = stack.pop();
       reverseStack(stack);
-      insertAtBottom(poppedElement, stack);
+      insertAtBottom(topElement, stack);
     }
   }
 
@@ -48,9 +48,9 @@ public class ReverseStackUsingRecursion {
     if (stack.isEmpty()) {
       stack.push(x);
     } else {
-      int poppedElement = stack.pop();
+      int topElement = stack.pop();
       insertAtBottom(x, stack);
-      stack.push(poppedElement);
+      stack.push(topElement);
     }
   }
 
