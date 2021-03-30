@@ -26,14 +26,13 @@ public class ReverseStackUsingRecursion {
     stack.push(5);
 
     System.out.println("Original stack: ");
-    stack.forEach(value -> System.out.print(value + " "));
+    System.out.print(stack);
     System.out.println("\n");
 
+    reverseStack(stack);
 
     System.out.println("Reversed stack: ");
-    while (!stack.isEmpty()) {
-      System.out.print(stack.pop() + " ");
-    }
+    System.out.print(stack);
   }
 
   public static void reverseStack(Stack<Integer> stack) {
