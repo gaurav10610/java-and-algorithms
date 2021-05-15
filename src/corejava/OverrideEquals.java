@@ -1,4 +1,4 @@
-package java;
+package corejava;
 
 public class OverrideEquals {
 
@@ -19,9 +19,7 @@ public class OverrideEquals {
       System.out.println("Not Equal");
     }
 
-    OverrideEquals object1 = new OverrideEquals();
     System.out.println("Value of i: " + i);
-    OverrideEquals object2 = new OverrideEquals();
     System.out.println("Value of i: " + i);
   }
 

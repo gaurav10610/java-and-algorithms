@@ -1,4 +1,4 @@
-package java;
+package corejava;
 
 public class DependencyInjection {
 

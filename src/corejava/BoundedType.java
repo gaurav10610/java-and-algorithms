@@ -1,4 +1,4 @@
-package java;
+package corejava;
 
 import java.util.StringTokenizer;
 

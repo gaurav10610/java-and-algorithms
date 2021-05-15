@@ -30,15 +30,15 @@ public class TreeTraversals {
 
     System.out.println("Inorder traversal: ");
     TreeUtils.printInOrderTraversal(node1);
-    System.out.println();
+    System.out.println("\n");
 
     System.out.println("Preorder traversal: ");
     TreeUtils.printPreOrderTraversal(node1);
-    System.out.println();
+    System.out.println("\n");
 
     System.out.println("Postorder traversal: ");
     TreeUtils.printPostOrderTraversal(node1);
-    System.out.println();
+    System.out.println("\n");
 
     System.out.println("Levelorder traversal: ");
     TreeUtils.printLevelOrderTraversal(node1);

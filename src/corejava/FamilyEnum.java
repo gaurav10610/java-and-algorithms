@@ -1,4 +1,4 @@
-package java;
+package corejava;
 
 public enum FamilyEnum {
 
