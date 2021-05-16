@@ -6,28 +6,127 @@ import java.util.Stack;
 
 public class TreeUtils {
 
-  // Function to print tree nodes in InOrder fashion
-  public static void printInOrderTraversal(TreeNode root) {
+  public static void printInOrderTraversalRecursive(TreeNode root) {
     if (root != null) {
-      printInOrderTraversal(root.getLeftChild());
+      printInOrderTraversalRecursive(root.getLeftChild());
       System.out.print(root.getValue() + " ");
-      printInOrderTraversal(root.getRightChild());
+      printInOrderTraversalRecursive(root.getRightChild());
     }
   }
 
-  public static void printPreOrderTraversal(TreeNode root) {
+  public static void printPreOrderTraversalRecursive(TreeNode root) {
     if (root != null) {
       System.out.print(root.getValue() + " ");
-      printPreOrderTraversal(root.getLeftChild());
-      printPreOrderTraversal(root.getRightChild());
+      printPreOrderTraversalRecursive(root.getLeftChild());
+      printPreOrderTraversalRecursive(root.getRightChild());
     }
   }
 
-  public static void printPostOrderTraversal(TreeNode root) {
+  public static void printPostOrderTraversalRecursive(TreeNode root) {
     if (root != null) {
-      printPostOrderTraversal(root.getLeftChild());
-      printPostOrderTraversal(root.getRightChild());
+      printPostOrderTraversalRecursive(root.getLeftChild());
+      printPostOrderTraversalRecursive(root.getRightChild());
       System.out.print(root.getValue() + " ");
+    }
+  }
+
+  public static void printPreOrderTraversalIterative(TreeNode root) {
+    Stack<TreeNode> stack = new Stack<>();
+    stack.push(root);
+    while (!stack.isEmpty()) {
+
+      TreeNode node = stack.pop();
+      System.out.print(node.getValue() + " ");
+
+      if (node.getRightChild() != null) {
+        stack.push(node.getRightChild());
+      }
+      if (node.getLeftChild() != null) {
+        stack.push(node.getLeftChild());
+      }
+    }
+  }
+
+  public static void printPostOrderTraversalIterative(TreeNode root)
+      throws CloneNotSupportedException {
+
+    // clone the original root as algorithm will be updating references the tree
+    TreeNode newRoot = (TreeNode) root.clone();
+    Stack<TreeNode> stack = new Stack<>();
+    stack.push(newRoot);
+
+    while (!stack.isEmpty()) {
+      TreeNode node = stack.peek();
+
+      /**
+       * 
+       * check if left child is null then check if right child is null or not
+       * 
+       * if right child is not null then push the right child in the stack and make the right child
+       * of the node as null to make sure that we never visit it again when we'll get back to parent
+       * again
+       * 
+       * if right child is null then simply pop the node
+       */
+      if (node.leftChild == null) {
+        
+        if (node.rightChild != null) {
+          
+          stack.push(node.getRightChild());
+          node.setRightChild(null);
+        } else {
+          
+          System.out.print(node.getValue() + " ");
+          stack.pop();
+        }
+      } else {
+
+        /**
+         * 
+         * if left child is not null then push the left child in the stack and make the left child
+         * of the node as null to make sure that we never visit it again when we'll get back to
+         * parent again
+         */
+        stack.push(node.getLeftChild());
+        node.setLeftChild(null);
+      }
+    }
+  }
+
+  public static void printInOrderTraversalIterative(TreeNode root)
+      throws CloneNotSupportedException {
+
+    // clone the original root as algorithm will be updating references the tree
+    TreeNode newRoot = (TreeNode) root.clone();
+    Stack<TreeNode> stack = new Stack<>();
+    stack.push(newRoot);
+
+    while (!stack.isEmpty()) {
+      TreeNode node = stack.peek();
+
+      /**
+       * 
+       * check if left child is null then pop the node and push the right child in the stack if it
+       * is not null
+       */
+      if (node.leftChild == null) {
+        System.out.print(node.getValue() + " ");
+        stack.pop();
+
+        if (node.rightChild != null) {
+          stack.push(node.getRightChild());
+        }
+      } else {
+
+        /**
+         * 
+         * if left child is not null then push the left child in the stack and make the left child
+         * of the node as null to make sure that we never visit it again when we'll get back to
+         * parent again
+         */
+        stack.push(node.getLeftChild());
+        node.setLeftChild(null);
+      }
     }
   }
 

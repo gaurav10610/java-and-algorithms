@@ -1,6 +1,6 @@
 package library;
 
-public class TreeNode {
+public class TreeNode implements Cloneable {
 
   TreeNode leftChild;
   int value;
@@ -39,6 +39,21 @@ public class TreeNode {
   @Override
   public String toString() {
     return String.valueOf(value);
+  }
+
+  /**
+   * 
+   * do deep cloning
+   */
+  public Object clone() throws CloneNotSupportedException {
+    TreeNode cloneTreeNode = new TreeNode(this.value);
+    if (this.leftChild != null) {
+      cloneTreeNode.setLeftChild((TreeNode) this.leftChild.clone());
+    }
+    if (this.rightChild != null) {
+      cloneTreeNode.setRightChild((TreeNode) this.rightChild.clone());
+    }
+    return cloneTreeNode;
   }
 
 }

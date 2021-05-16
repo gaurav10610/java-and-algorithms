@@ -1,48 +1,55 @@
 package tree;
 
+import data.MockDataHelper;
 import library.TreeNode;
 import library.TreeUtils;
 
+/**
+ * 
+ * this class covers the implementation of following binary tree traversals - 
+ * 
+ * 1. Level order tree traversal using queue
+ * 
+ * 2. Pre order traversal, both recursive and iterative way
+ * 
+ * 3. In order traversal, both recursive and iterative way
+ * 
+ * 4. Post order traversal, both recursive and iterative way
+ *
+ */
 public class TreeTraversals {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws CloneNotSupportedException {
 
-    TreeNode node1 = new TreeNode(1);
-    TreeNode node2 = new TreeNode(2);
-    TreeNode node3 = new TreeNode(3);
-    TreeNode node4 = new TreeNode(4);
-    TreeNode node5 = new TreeNode(5);
-    TreeNode node6 = new TreeNode(6);
-    TreeNode node7 = new TreeNode(7);
-    TreeNode node8 = new TreeNode(8);
-    TreeNode node9 = new TreeNode(9);
-    TreeNode node10 = new TreeNode(10);
-
-    node1.setLeftChild(node2);
-    node1.setRightChild(node3);
-    node2.setLeftChild(node4);
-    node2.setRightChild(node5);
-    node3.setLeftChild(node6);
-    node3.setRightChild(node7);
-    node5.setLeftChild(node8);
-    node5.setRightChild(node9);
-    node7.setLeftChild(node10);
+    TreeNode root = MockDataHelper.getBinaryTree();
+    
+    System.out.println("Level order traversal: ");
+    TreeUtils.printLevelOrderTraversal(root);
+    System.out.println("\n");
 
     System.out.println("Inorder traversal: ");
-    TreeUtils.printInOrderTraversal(node1);
+    System.out.print("recursive: ");
+    TreeUtils.printInOrderTraversalRecursive(root);
+    System.out.println("");
+    System.out.print("iterative: ");
+    TreeUtils.printInOrderTraversalIterative(root);
     System.out.println("\n");
 
     System.out.println("Preorder traversal: ");
-    TreeUtils.printPreOrderTraversal(node1);
+    System.out.print("recursive: ");
+    TreeUtils.printPreOrderTraversalRecursive(root);
+    System.out.println("");
+    System.out.print("iterative: ");
+    TreeUtils.printPreOrderTraversalIterative(root);
     System.out.println("\n");
 
     System.out.println("Postorder traversal: ");
-    TreeUtils.printPostOrderTraversal(node1);
+    System.out.print("recursive: ");
+    TreeUtils.printPostOrderTraversalRecursive(root);
+    System.out.println("");
+    System.out.print("iterative: ");
+    TreeUtils.printPostOrderTraversalIterative(root);
     System.out.println("\n");
-
-    System.out.println("Levelorder traversal: ");
-    TreeUtils.printLevelOrderTraversal(node1);
-    System.out.println();
   }
 
 }
