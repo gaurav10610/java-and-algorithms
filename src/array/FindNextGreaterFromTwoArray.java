@@ -36,8 +36,19 @@ public class FindNextGreaterFromTwoArray {
 
     Map<Integer, Integer> map = new HashMap<>();
 
+    /**
+     * 
+     * first find out next greater for each element in num2 and store it in hash map
+     * 
+     */
     for (int x : num2) {
 
+      /**
+       * 
+       * keep popping the stack until the top element is smaller than the current element in
+       * consideration and update the next greater for popped elements in the hash map
+       * 
+       */
       if (!stack.isEmpty() && stack.peek() < x) {
         int popped = stack.pop();
         map.put(popped, x);
@@ -46,6 +57,11 @@ public class FindNextGreaterFromTwoArray {
     }
 
     int i = 0;
+
+    /**
+     * 
+     * find the next greater for corresponding element in num2 from the hash map
+     */
     while (i < num1.length) {
       if (map.containsKey(num1[i])) {
         result[i] = map.get(num1[i]);
