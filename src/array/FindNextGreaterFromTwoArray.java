@@ -1,29 +1,59 @@
 package array;
 
-import data.MockDataHelper;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 /**
  * 
- * Given two arrays num1 and num2, both the arrays contains unique values and num1 is subset of
- * num2. Find out the next greater values from num2 corresponding to all values in num1 at index i from
- * values exist in num2 from i+1 to num2.length-1
+ * You are given two integer arrays nums1 and nums2 both of unique elements, where nums1 is a subset
+ * of nums2.
  * 
- * If there is no greater value exist then consider -1 corresponding to that from num1
+ * Find all the next greater numbers for nums1's elements in the corresponding places of nums2.
  * 
- * Examples - 
+ * The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2.
+ * If it does not exist, return -1 for this number.
  * 
- * num1 = [4, 1, 2]
+ * Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
  * 
- * num2 = [1, 3, 4, 2]
- * 
- * result = [-1 4 -1]
+ * Output: [-1,3,-1]
  *
+ * Time complexity = O(m + n)
+ * 
  */
 public class FindNextGreaterFromTwoArray {
 
   public static void main(String[] args) {
-    
 
+    int[] num1 = {4, 1, 2, 10};
+    int[] num2 = {1, 6, 4, 2, 3, 8, 10};
+
+    int[] result = new int[num1.length];
+    Arrays.fill(result, -1);
+
+    Stack<Integer> stack = new Stack<>();
+
+    Map<Integer, Integer> map = new HashMap<>();
+
+    for (int x : num2) {
+
+      if (!stack.isEmpty() && stack.peek() < x) {
+        int popped = stack.pop();
+        map.put(popped, x);
+      }
+      stack.push(x);
+    }
+
+    int i = 0;
+    while (i < num1.length) {
+      if (map.containsKey(num1[i])) {
+        result[i] = map.get(num1[i]);
+      }
+      i++;
+    }
+
+    System.out.print(Arrays.toString(result));
   }
 
 }
