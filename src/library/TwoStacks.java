@@ -2,7 +2,7 @@ package library;
 
 /**
  * 
- * Two stack datastructure uses one array to store contents of both the stacks
+ * Two stack data structure uses one array to store contents of both the stacks
  *
  * @param <T>
  */
