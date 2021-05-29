@@ -1,6 +1,6 @@
 package searchingNsorting;
 
-import library.ListNode;
+import library.SinglyLinkedListNode;
 import library.ListUtils;
 
 /**
@@ -10,7 +10,7 @@ import library.ListUtils;
  */
 public class QuickSortLikedList {
   static int[] array = {12, 11, 13, 5, 6, 7};
-  static ListNode root = null;
+  static SinglyLinkedListNode root = null;
 
   public static void main(String[] args) {
     root = ListUtils.buildLinkedListFromArray(array);
@@ -19,7 +19,7 @@ public class QuickSortLikedList {
     ListUtils.printList(null, root);
   }
 
-  public static void listQuickSort(ListNode node, int start, int end) {
+  public static void listQuickSort(SinglyLinkedListNode node, int start, int end) {
     int i = partitionList(node, start, end);
     if (start < i)
       listQuickSort(node, start, i - 1);
@@ -27,9 +27,9 @@ public class QuickSortLikedList {
       listQuickSort(node, i + 1, end);
   }
 
-  public static int partitionList(ListNode node, int start, int end) {
+  public static int partitionList(SinglyLinkedListNode node, int start, int end) {
     int i = 0;
-    ListNode pivoteNode = null;
+    SinglyLinkedListNode pivoteNode = null;
 
     if (i == 0) {
       pivoteNode = node;
@@ -40,15 +40,15 @@ public class QuickSortLikedList {
       }
     }
     pivoteNode = node;
-    ListNode iNode = pivoteNode;
-    ListNode iteratorNode = pivoteNode.getNext();
+    SinglyLinkedListNode iNode = pivoteNode;
+    SinglyLinkedListNode iteratorNode = pivoteNode.getNext();
     int pivotValue = pivoteNode.getValue();
     int j = i + 1;
 
     while ((j <= end) && iteratorNode != null) {
       if (pivotValue >= iteratorNode.getValue()) {
         i++;
-        ListNode tempNode = iNode.getNext().getNext();
+        SinglyLinkedListNode tempNode = iNode.getNext().getNext();
         iNode.getNext().setNext(iteratorNode.getNext());
         iNode.setNext(iteratorNode);
         iteratorNode.setNext(tempNode);
@@ -62,7 +62,7 @@ public class QuickSortLikedList {
   }
 
   // swap
-  private static void swapNodes(ListNode nodeA, ListNode nodeB) {
+  private static void swapNodes(SinglyLinkedListNode nodeA, SinglyLinkedListNode nodeB) {
 
   }
 

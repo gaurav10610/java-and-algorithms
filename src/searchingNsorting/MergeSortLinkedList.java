@@ -1,13 +1,13 @@
 package searchingNsorting;
 
-import library.ListNode;
+import library.SinglyLinkedListNode;
 import library.ListUtils;
 
 public class MergeSortLinkedList {
 
   public static void main(String[] args) {
     int[] array = {12, 11, 13, 5, 6, 7};
-    ListNode head = ListUtils.buildLinkedListFromArray(array);
+    SinglyLinkedListNode head = ListUtils.buildLinkedListFromArray(array);
     ListUtils.printList("Unsorted List: ", head);
     System.out.println();
     ListUtils.printList("Sorted List: ", mergeSort(head));
@@ -18,14 +18,14 @@ public class MergeSortLinkedList {
    * @param head
    * @return
    */
-  public static ListNode mergeSort(ListNode head) {
+  public static SinglyLinkedListNode mergeSort(SinglyLinkedListNode head) {
     if (head == null || (head != null && head.getNext() == null)) {
       return head;
     } else {
       int mid = ListUtils.getListSize(head) / 2;
-      ListNode mideNode = breakListByIndex(head, mid);
-      ListNode left = mergeSort(head);
-      ListNode right = mergeSort(mideNode);
+      SinglyLinkedListNode mideNode = breakListByIndex(head, mid);
+      SinglyLinkedListNode left = mergeSort(head);
+      SinglyLinkedListNode right = mergeSort(mideNode);
       return sortedMerge(left, right);
     }
   }
@@ -36,31 +36,31 @@ public class MergeSortLinkedList {
    * @param head2
    * @return
    */
-  public static ListNode sortedMerge(ListNode head1, ListNode head2) {
+  public static SinglyLinkedListNode sortedMerge(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
     System.out.println("Merging lists: " + head1 + " & " + head2);
-    ListNode sortedList = null;
-    ListNode sortedPointer = sortedList;
+    SinglyLinkedListNode sortedList = null;
+    SinglyLinkedListNode sortedPointer = sortedList;
     while (head1 != null && head2 != null) {
 
       if (head1.getValue() <= head2.getValue()) {
 
         if (sortedList == null) {
-          sortedList = new ListNode(head1.getValue(), null);
+          sortedList = new SinglyLinkedListNode(head1.getValue(), null);
           head1 = head1.getNext();
           sortedPointer = sortedList;
         } else {
-          sortedPointer.setNext(new ListNode(head1.getValue(), null));
+          sortedPointer.setNext(new SinglyLinkedListNode(head1.getValue(), null));
           head1 = head1.getNext();
           sortedPointer = sortedPointer.getNext();
         }
       } else {
 
         if (sortedList == null) {
-          sortedList = new ListNode(head2.getValue(), null);
+          sortedList = new SinglyLinkedListNode(head2.getValue(), null);
           head2 = head2.getNext();
           sortedPointer = sortedList;
         } else {
-          sortedPointer.setNext(new ListNode(head2.getValue(), null));
+          sortedPointer.setNext(new SinglyLinkedListNode(head2.getValue(), null));
           head2 = head2.getNext();
           sortedPointer = sortedPointer.getNext();
         }
@@ -72,11 +72,11 @@ public class MergeSortLinkedList {
      */
     while (head1 != null) {
       if (sortedList == null) {
-        sortedList = new ListNode(head1.getValue(), null);
+        sortedList = new SinglyLinkedListNode(head1.getValue(), null);
         head1 = head1.getNext();
         sortedPointer = sortedList;
       } else {
-        sortedPointer.setNext(new ListNode(head1.getValue(), null));
+        sortedPointer.setNext(new SinglyLinkedListNode(head1.getValue(), null));
         head1 = head1.getNext();
         sortedPointer = sortedPointer.getNext();
       }
@@ -87,11 +87,11 @@ public class MergeSortLinkedList {
      */
     while (head2 != null) {
       if (sortedList == null) {
-        sortedList = new ListNode(head2.getValue(), null);
+        sortedList = new SinglyLinkedListNode(head2.getValue(), null);
         head2 = head2.getNext();
         sortedPointer = sortedList;
       } else {
-        sortedPointer.setNext(new ListNode(head2.getValue(), null));
+        sortedPointer.setNext(new SinglyLinkedListNode(head2.getValue(), null));
         head2 = head2.getNext();
         sortedPointer = sortedPointer.getNext();
       }
@@ -100,9 +100,9 @@ public class MergeSortLinkedList {
     return sortedList;
   }
 
-  public static ListNode breakListByIndex(ListNode head1, int mid) {
-    ListNode node = null;
-    ListNode pointerHead = head1;
+  public static SinglyLinkedListNode breakListByIndex(SinglyLinkedListNode head1, int mid) {
+    SinglyLinkedListNode node = null;
+    SinglyLinkedListNode pointerHead = head1;
     while (mid > 1) {
       pointerHead = pointerHead.getNext();
       mid--;

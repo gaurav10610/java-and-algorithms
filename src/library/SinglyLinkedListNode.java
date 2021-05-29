@@ -1,10 +1,10 @@
 package library;
 
-public class ListNode {
+public class SinglyLinkedListNode {
   private int value;
-  private ListNode next;
+  private SinglyLinkedListNode next;
 
-  public ListNode(int value, ListNode next) {
+  public SinglyLinkedListNode(int value, SinglyLinkedListNode next) {
     this.value = value;
     this.next = next;
   }
@@ -17,17 +17,17 @@ public class ListNode {
     this.value = value;
   }
 
-  public ListNode getNext() {
+  public SinglyLinkedListNode getNext() {
     return next;
   }
 
-  public void setNext(ListNode next) {
+  public void setNext(SinglyLinkedListNode next) {
     this.next = next;
   }
 
   @Override
   public String toString() {
-    return this.value + "->" + (this.next != null ? this.next : "");
+    return this.value + "->" + (this.next != null ? this.next.toString() : "null");
   }
 
 }
