@@ -2,6 +2,11 @@ package data;
 
 import library.TreeNode;
 
+/**
+ * 
+ * This is just a helper class for mock data
+ *
+ */
 public class MockDataHelper {
 
   public static TreeNode getBinaryTree() {

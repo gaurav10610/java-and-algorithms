@@ -6,6 +6,9 @@ import java.util.Stack;
 
 public class TreeUtils {
 
+  /**
+   * recursive in-order traversal of binary tree
+   */
   public static void printInOrderTraversalRecursive(TreeNode root) {
     if (root != null) {
       printInOrderTraversalRecursive(root.getLeftChild());
@@ -14,6 +17,9 @@ public class TreeUtils {
     }
   }
 
+  /**
+   * recursive pre-order traversal of binary tree
+   */
   public static void printPreOrderTraversalRecursive(TreeNode root) {
     if (root != null) {
       System.out.print(root.getValue() + " ");
@@ -22,6 +28,9 @@ public class TreeUtils {
     }
   }
 
+  /**
+   * recursive post-order traversal of binary tree
+   */
   public static void printPostOrderTraversalRecursive(TreeNode root) {
     if (root != null) {
       printPostOrderTraversalRecursive(root.getLeftChild());
@@ -30,6 +39,9 @@ public class TreeUtils {
     }
   }
 
+  /**
+   * iterative pre-order traversal of binary tree
+   */
   public static void printPreOrderTraversalIterative(TreeNode root) {
     Stack<TreeNode> stack = new Stack<>();
     stack.push(root);
@@ -47,6 +59,9 @@ public class TreeUtils {
     }
   }
 
+  /**
+   * iterative post-order traversal of binary tree
+   */
   public static void printPostOrderTraversalIterative(TreeNode root)
       throws CloneNotSupportedException {
 
@@ -93,6 +108,9 @@ public class TreeUtils {
     }
   }
 
+  /**
+   * iterative in-order traversal of binary tree
+   */
   public static void printInOrderTraversalIterative(TreeNode root)
       throws CloneNotSupportedException {
 
@@ -130,6 +148,9 @@ public class TreeUtils {
     }
   }
 
+  /**
+   * iterative level-order traversal of binary tree
+   */
   public static void printLevelOrderTraversal(TreeNode root) {
     Queue<TreeNode> queue = new LinkedList<>();
     queue.add(root);
@@ -148,6 +169,14 @@ public class TreeUtils {
     }
   }
 
+  /**
+   * this will find the path from root to the node having given value 
+   * 
+   * @param root
+   * @param nodeValue
+   * @param path
+   * @return
+   */
   public static boolean findNodePathFromRoot(TreeNode root, int nodeValue, Stack<TreeNode> path) {
 
     if (root == null) {
