@@ -2,7 +2,7 @@ package library;
 
 /**
  * 
- * custom queue impementation using array
+ * custom impementation of capacity based queue using array
  *
  */
 public class MyCustomQueue {

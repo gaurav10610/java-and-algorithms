@@ -5,12 +5,13 @@ package library;
  * this is a list node implementation for doubly linked list
  *
  */
-public class DoublyLinkedListNode<T> {
+public class DoublyLinkedListNode<T> implements Cloneable {
   private T value;
   private DoublyLinkedListNode<T> next;
   private DoublyLinkedListNode<T> previous;
 
-  public DoublyLinkedListNode(T value, DoublyLinkedListNode<T> next, DoublyLinkedListNode<T> previous) {
+  public DoublyLinkedListNode(T value, DoublyLinkedListNode<T> next,
+      DoublyLinkedListNode<T> previous) {
     super();
     this.value = value;
     this.next = next;
@@ -45,5 +46,12 @@ public class DoublyLinkedListNode<T> {
   public String toString() {
     return (this.previous == null ? "null" : "") + "<-" + this.value + "->"
         + (this.next != null ? this.next.toString() : "null");
+  }
+
+  @Override
+  public DoublyLinkedListNode<T> clone() {
+    DoublyLinkedListNode<T> node = new DoublyLinkedListNode<>(value,
+        next != null ? next.clone() : null, previous != null ? previous.clone() : null);
+    return node;
   }
 }

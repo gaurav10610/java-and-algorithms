@@ -8,9 +8,8 @@ public class MergeSortLinkedList {
   public static void main(String[] args) {
     int[] array = {12, 11, 13, 5, 6, 7};
     SinglyLinkedListNode head = ListUtils.buildLinkedListFromArray(array);
-    ListUtils.printList("Unsorted List: ", head);
-    System.out.println();
-    ListUtils.printList("Sorted List: ", mergeSort(head));
+    System.out.println(head);
+    System.out.println("Sorted List: " + mergeSort(head).toString());
   }
 
   /**

@@ -3,6 +3,11 @@ package library;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 
+ * custom implementation of stack using two queues
+ * 
+ */
 public class StackUsingQueue<T> {
 
   private Queue<T> queue1;
@@ -21,13 +26,13 @@ public class StackUsingQueue<T> {
    */
   public void push(T element) {
     size++;
-    queue1.add(element);
+    queue1.offer(element);
 
     /**
      * add all the elements from queue2 to queue1 to maintain the LIFO order of stack
      */
     while (!queue2.isEmpty()) {
-      queue1.add(queue2.poll());
+      queue1.offer(queue2.poll());
     }
     
     /**

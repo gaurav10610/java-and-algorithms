@@ -16,7 +16,7 @@ public class QuickSortLikedList {
     root = ListUtils.buildLinkedListFromArray(array);
     // ListUtils.printList(root);
     listQuickSort(root, 0, array.length - 1);
-    ListUtils.printList(null, root);
+    System.out.println(root);
   }
 
   public static void listQuickSort(SinglyLinkedListNode node, int start, int end) {

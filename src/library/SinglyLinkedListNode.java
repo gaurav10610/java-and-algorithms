@@ -1,6 +1,6 @@
 package library;
 
-public class SinglyLinkedListNode {
+public class SinglyLinkedListNode implements Cloneable {
   private int value;
   private SinglyLinkedListNode next;
 
@@ -28,6 +28,12 @@ public class SinglyLinkedListNode {
   @Override
   public String toString() {
     return this.value + "->" + (this.next != null ? this.next.toString() : "null");
+  }
+
+  @Override
+  public SinglyLinkedListNode clone() {
+    SinglyLinkedListNode node = new SinglyLinkedListNode(value, next != null ? next.clone() : null);
+    return node;
   }
 
 }
