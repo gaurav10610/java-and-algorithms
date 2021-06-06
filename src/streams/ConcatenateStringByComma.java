@@ -16,7 +16,11 @@ public class ConcatenateStringByComma {
     List<String> list = Arrays.asList("abc", "", "bc", "efg", "abcd", "", "jkl");
     String resultString = list.stream().filter((string) -> string.length() > 0)
         .reduce((string1, string2) -> string1 + "," + string2).get();
-    System.out.print(resultString);
+    System.out.println(resultString);
+    
+    String stringSeparatedByPipe = list.stream().filter(string -> string.length() > 0)
+        .reduce((string1, string2) -> string1 + "||" + string2).get();
+    System.out.println(stringSeparatedByPipe);
   }
 
 }
