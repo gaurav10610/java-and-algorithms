@@ -16,7 +16,7 @@ public class ImmutableCollection {
 
     System.out.println("Before modifications:");
     list.forEach(element -> System.out.print(" " + element.name));
-    System.out.println("\n");
+    System.out.println();
 
     // Immutable list
     List<Name> immutableList = Collections.unmodifiableList(list);
@@ -25,9 +25,6 @@ public class ImmutableCollection {
     System.out.println("After modifications:");
     immutableList.forEach(element -> System.out.print(" " + element.name));
   }
-
-  // public static <T> void makeImmutable(List<T> list){
-  // }
 
 }
 
