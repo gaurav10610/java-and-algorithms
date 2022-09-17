@@ -8,6 +8,11 @@ import java.util.Queue;
 import java.util.Set;
 import library.TreeNode;
 
+/**
+ * 
+ * Print left and right projection of a binary tree
+ *
+ */
 public class BinaryTreeLeftRightProjection {
 
   public static void main(String[] args) {

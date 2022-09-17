@@ -5,7 +5,11 @@ public class DependencyInjection {
   public static void main(String[] args) {
     BaseInterface obj1 = new Temp1();
     BaseInterface obj2 = new Temp2();
-    TestClass test = new TestClass(obj2);
+    TestClass test = new TestClass(obj1);
+    
+    test.getObj().doSomething();
+    
+    test = new TestClass(obj2);
 
     test.getObj().doSomething();
   }
@@ -40,7 +44,7 @@ class Temp1 implements BaseInterface {
 
   @Override
   public void doSomething() {
-    System.out.print("This is class A");
+    System.out.println("This is class A");
   }
 
 }
@@ -50,7 +54,7 @@ class Temp2 implements BaseInterface {
 
   @Override
   public void doSomething() {
-    System.out.print("This is class B");
+    System.out.println("This is class B");
   }
 
 }
