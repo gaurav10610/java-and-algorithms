@@ -1,6 +1,6 @@
 package multithreading;
 
-public class ThreasClassMethods implements Runnable {
+public class ThreadClassMethods implements Runnable {
 
   @Override
   public void run() {
@@ -10,7 +10,7 @@ public class ThreasClassMethods implements Runnable {
 
   public static void main(String[] args) {
 
-    ThreasClassMethods obj = new ThreasClassMethods();
+    ThreadClassMethods obj = new ThreadClassMethods();
     Helper obj2 = new Helper();
 
     Thread thread1 = new Thread(obj);
