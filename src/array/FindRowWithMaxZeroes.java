@@ -25,7 +25,6 @@ public class FindRowWithMaxZeroes {
     int totalColumns = matrix[0].length;
 
     for (int i = 0; i < totalRows; i++) {
-      // System.out.println(findLastOnesIndex(matrix[i], 0, matrix[i].length - 1));
       int lastOnesIndex = findLastOnesIndex(matrix[i], 0, totalColumns - 1);
 
       int totalZeroes = (lastOnesIndex < 0) ? totalColumns : (totalColumns - lastOnesIndex - 1);
@@ -35,7 +34,7 @@ public class FindRowWithMaxZeroes {
         rowNumber = i;
       }
     }
-    
+
     System.out
         .println((rowNumber + 1) + " row has maximum number of zeroes with count: " + maxZeroes);
   }

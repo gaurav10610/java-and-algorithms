@@ -3,10 +3,10 @@ package jvm;
 public class JVMClassDemo {
 
   public static void main(String[] args) {
-    
+
     MyList<String> list = new MyList<String>("Gaurav K Yadav");
     System.out.println(list.getObject());
-    
+
   }
 }
 

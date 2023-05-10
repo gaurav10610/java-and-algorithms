@@ -34,15 +34,20 @@ public class FishFight {
      * 
      * 1 denotes that fish is swimming in right direction
      */
-    int[] swimDirection = {1, -1, 1, 1, - 1};
+    int[] swimDirection = {1, -1, 1, 1, -1};
 
     Object[] result = getRemainingFishesAfterFight(fishSizes, swimDirection);
 
     List<Integer> remainingFishes = (List<Integer>) result[0];
     List<Integer> remainingFishDirection = (List<Integer>) result[1];
 
-    System.out.println(remainingFishes);
-    System.out.println(remainingFishDirection);
+    /**
+     * print remaining fish sizes along with their direction
+     */
+    for (int i = 0; i < remainingFishes.size(); i++) {
+      System.out.printf("fishSize: '%d' and swim direction: '%d' \n", remainingFishes.get(i),
+          remainingFishDirection.get(i));
+    }
   }
 
   /**

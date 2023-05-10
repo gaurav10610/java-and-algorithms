@@ -19,20 +19,22 @@ public class FindPairWithSumX {
   public static void main(String[] args) {
     int[] array = {0, -1, 2, -3, 1};
 
-    int sum = -2;
+    int sum = 0;
 
     Set<Integer> set = new HashSet<>();
 
     for (int number : array) {
 
-      int remainingSum = sum - number;
-      if (set.contains(remainingSum)) {
-        System.out.print("Pair: (" + number + "," + remainingSum + ")");
+      int difference = sum - number;
+
+      if (set.contains(difference)) {
+
+        System.out.println("sum exist in the array");
         return;
       }
       set.add(number);
     }
-    System.out.print("No pair exist with given sum");
+    System.out.println("sum does not exist in the array");
   }
 
 }

@@ -12,6 +12,10 @@ import java.util.Stack;
  * Input -> [23, 10, 42, 32, 22, 11, 56, 70]
  * 
  * Output -> 42 42 56 56 56 56 70 -1
+ * 
+ * Time Complexity - O(n)
+ * 
+ * Space Complexity - O(n)
  *
  */
 public class FindNextBiggerValue {
@@ -56,7 +60,7 @@ public class FindNextBiggerValue {
        * 
        * finally add the current number in stack
        */
-      stack.add(new ArrayValue(currentNumber, i));
+      stack.push(new ArrayValue(currentNumber, i));
     }
 
     /**
