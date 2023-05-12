@@ -9,7 +9,7 @@ public class BinaryTreeSearch {
 
     TreeNode root = MockDataHelper.getBinaryTree();
 
-    boolean valueFound = searchValue(root, 7);
+    boolean valueFound = searchValue(root, 10);
 
     if (valueFound) {
 

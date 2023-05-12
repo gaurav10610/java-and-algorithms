@@ -8,6 +8,8 @@ import library.TreeNode;
 /**
  * 
  * Check if the given binary tree is a binary search tree or not
+ * 
+ * Time Complexity - O(N), N - no. of nodes in tree 
  *
  */
 public class CheckIfABinaryTreeIsBST {
@@ -24,58 +26,48 @@ public class CheckIfABinaryTreeIsBST {
     for (TreeNode root : inputs) {
       boolean isBST = isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
       if (isBST)
-        System.out.println("tree " + i + " is BST");
+        System.out.printf("tree %d is BST \n", i);
       else
-        System.out.println("tree " + i + " is not BST");
+        System.out.printf("tree %d is not BST \n", i);
       i++;
     }
   }
 
-  public static boolean isBST(TreeNode node, int min, int max) {
+  /**
+   * check whether the tree rooted at root node is a BST or not
+   * 
+   * @param root
+   * @param min
+   * @param max
+   * @return
+   */
+  public static boolean isBST(TreeNode root, int min, int max) {
 
-    if (node == null) {
+    if (root == null) {
 
       /**
-       * 
        * empty tree is always BST
        */
       return true;
-    } else if (node.getLeftChild() == null && node.getRightChild() == null) {
-
-      /**
-       * 
-       * for leaf node, need to check the max and min value bounds
-       */
-      if (node.getValue() >= min && node.getValue() <= max) {
-        return true;
-      } else {
-
-        /**
-         * 
-         * violation of max or min value bounds
-         */
-        return false;
-      }
     } else {
 
-      boolean isLeftSubtreeBST = true;
-      boolean isRightSubtreeBST = true;
+      /**
+       * check violation of max or min value bounds
+       */
+      if (root.getValue() < min || root.getValue() > max) {
+
+        return false;
+      }
 
       /**
-       * 
        * recursively check if left subtree is BST or not with appropriate min and max value bounds
        */
-      if (node.getLeftChild() != null) {
-        isLeftSubtreeBST = isBST(node.getLeftChild(), min, node.getValue() - 1);
-      }
+      boolean isLeftSubtreeBST = isBST(root.getLeftChild(), min, root.getValue());
 
       /**
-       * 
        * recursively check if right subtree is BST or not with appropriate min and max value bounds
        */
-      if (node.getRightChild() != null) {
-        isRightSubtreeBST = isBST(node.getRightChild(), node.getValue(), max);
-      }
+      boolean isRightSubtreeBST = isBST(root.getRightChild(), root.getValue(), max);
 
       /**
        * return true if both the subtrees are BST
