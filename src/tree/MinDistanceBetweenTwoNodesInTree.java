@@ -38,8 +38,8 @@ public class MinDistanceBetweenTwoNodesInTree {
       return;
     }
 
-    TreeNode lca = TreeUtils.findLowestCommonAncestor(root, nodeValue1, nodeValue2,
-        rootToNode1Path, rootToNode2Path);
+    TreeNode lca = TreeUtils.findLowestCommonAncestor(root, nodeValue1, nodeValue2, rootToNode1Path,
+        rootToNode2Path);
 
     if (lca == null) {
       System.out.println("Lowest Common Ancestor not found");
@@ -52,8 +52,8 @@ public class MinDistanceBetweenTwoNodesInTree {
     int minimumDistance =
         rootToNode1Path.size() - 1 + rootToNode2Path.size() - 1 - 2 * (rootToLcaPath.size() - 1);
 
-    System.out.println("Minimum distance between nodes " + nodeValue1 + " and " + nodeValue2
-        + " is: " + minimumDistance);
+    System.out.printf("Minimum distance between nodes %d and %d is: %d", nodeValue1, nodeValue2,
+        minimumDistance);
   }
 
 }

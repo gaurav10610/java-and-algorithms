@@ -1,5 +1,6 @@
 package stack;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -25,14 +26,11 @@ public class ReverseStackUsingRecursion {
     stack.push(4);
     stack.push(5);
 
-    System.out.println("Original stack: ");
-    System.out.print(stack);
-    System.out.println("\n");
+    System.out.printf("Original stack: %s \n", Arrays.toString(stack.toArray()));
 
     reverseStack(stack);
 
-    System.out.println("Reversed stack: ");
-    System.out.print(stack);
+    System.out.printf("Reversed stack: %s", Arrays.toString(stack.toArray()));
   }
 
   public static void reverseStack(Stack<Integer> stack) {

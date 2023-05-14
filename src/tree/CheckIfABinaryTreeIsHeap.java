@@ -3,6 +3,13 @@ package tree;
 import data.MockDataHelper;
 import library.TreeNode;
 
+/**
+ * 
+ * Check is a given binary tree
+ * 
+ * Time Complexity - O(N), N - no. of nodes in the binary tree
+ *
+ */
 public class CheckIfABinaryTreeIsHeap {
 
   public static void main(String[] args) {
@@ -30,8 +37,7 @@ public class CheckIfABinaryTreeIsHeap {
    */
   public static boolean checkIfMaxHeap(TreeNode root) {
 
-    if (root == null
-        || (root != null && root.getLeftChild() == null && root.getRightChild() == null)) {
+    if (root == null) {
       return true;
     } else {
 
@@ -52,8 +58,7 @@ public class CheckIfABinaryTreeIsHeap {
    */
   public static boolean checkIfMinHeap(TreeNode root) {
 
-    if (root == null
-        || (root != null && root.getLeftChild() == null && root.getRightChild() == null)) {
+    if (root == null) {
       return true;
     } else {
 
