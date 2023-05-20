@@ -3,6 +3,11 @@ package strings;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * 
+ * Print all substrings of a string
+ * 
+ */
 public class PrintAllSubstrings {
 
   public static void main(String[] args) {

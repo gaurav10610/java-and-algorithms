@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import library.Trie;
 
+/**
+ * Search a string or prefix in a prefix tree or trie
+ * 
+ *
+ */
 public class TrieSearching {
 
   public static void main(String[] args) {
