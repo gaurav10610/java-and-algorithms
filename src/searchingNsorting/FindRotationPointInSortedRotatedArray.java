@@ -6,10 +6,10 @@ import java.util.List;
 
 /**
  * 
- * Find the Point(Index of minimum element from original sorted array) of Rotation of a rotated
+ * Find the Point (Index of minimum element from original sorted array) of Rotation in a rotated
  * Sorted Array
  * 
- * Input - {24,34,56,78,87,12,13}
+ * Input - { 24, 34, 56, 78, 87, 12, 13 }
  * 
  * Output - 5
  * 
@@ -46,8 +46,8 @@ public class FindRotationPointInSortedRotatedArray {
 
     testArrays.forEach(array -> {
       int rotationIndex = getRotationIndex(array, 0, array.length - 1) % array.length;
-      System.out
-          .println("Index of point of rotation for " + Arrays.toString(array) + " is: " + rotationIndex);
+      System.out.printf("Index of point of rotation for %s is: %d \n", Arrays.toString(array),
+          rotationIndex);
     });
   }
 

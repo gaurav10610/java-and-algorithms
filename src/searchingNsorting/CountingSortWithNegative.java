@@ -2,6 +2,16 @@ package searchingNsorting;
 
 import java.util.Arrays;
 
+/**
+ * Implement counting sort on an array of integers containing positive and negative values
+ * 
+ * Hints - 
+ * 
+ * 1. Range for count array - (max - min + 1)
+ * 
+ * 2. Offset x's values by (x - min)
+ *
+ */
 public class CountingSortWithNegative {
 
   public static void main(String[] args) {

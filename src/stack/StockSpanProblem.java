@@ -11,7 +11,7 @@ import java.util.Stack;
  * For example, if an array of 7 days prices is given as {100, 80, 60, 70, 60, 75, 85}, then the
  * span values for corresponding 7 days are {1, 1, 1, 2, 1, 4, 6}
  * 
- * trick - start traversing from the end and just find the next greater element and count the days
+ * Trick - start traversing from the end and just find the next greater element and count the days
  * in between
  * 
  */
