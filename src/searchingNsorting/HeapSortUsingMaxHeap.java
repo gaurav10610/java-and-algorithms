@@ -1,6 +1,6 @@
 package searchingNsorting;
 
-import java.util.Arrays;
+import library.ArrayUtils;
 import library.HeapUtils;
 
 public class HeapSortUsingMaxHeap {
@@ -20,7 +20,7 @@ public class HeapSortUsingMaxHeap {
       HeapUtils.maxHeapify(arr, j, 0);
     }
 
-    System.out.print(Arrays.toString(arr));
+    ArrayUtils.printIntArray(arr);
   }
 
 }

@@ -1,80 +1,111 @@
 package searchingNsorting;
 
-import java.util.*;
+import library.ArrayUtils;
 
+/**
+ * Merge Sort Algorithm
+ * 
+ * Time Complexity - Best Case - O(NlogN), Average Case - O(NlogN), Worst Case - O(NlogN)
+ * 
+ * Space Complexity - O(1)
+ *
+ */
 public class MergeSort {
 
   public static void main(String[] args) {
-    int[] numbers = {45, 23, 2, 1, 67, 22, 11, 54, 32, 21, 11, 56, 100, 99, 65, 77, 78, 87};
-    System.out.println("Sorted array is below: ");
-    mergeSort(numbers, 0, numbers.length - 1);
 
-    Arrays.stream(numbers).forEach((element) -> {
-      System.out.print(element + " ");
-    });
+    int[] array = {45, 23, 2, 1, 67, 22, 11, 54, 32, 21, 11, 56, 100, 99, 65, 77, 78, 87};
+
+    mergeSort(array, 0, array.length - 1);
+
+    ArrayUtils.printIntArray(array);
   }
 
-  // Merge Sort
-  public static void mergeSort(int[] numbers, int l, int r) {
+  public static void mergeSort(int[] array, int left, int right) {
 
-    if (l < r) {
-      // Find the middle point
-      int m = l + (r - l) / 2;
+    if (left < right) {
 
-      // Sort first and second halves
-      mergeSort(numbers, l, m);
-      mergeSort(numbers, m + 1, r);
+      int mid = left + (right - left) / 2;
 
-      // Merge the sorted halves
-      merge(numbers, l, m, r);
+      /*
+       * sort left sub-array
+       */
+      mergeSort(array, left, mid);
+
+      /*
+       * sort right sub-array
+       */
+      mergeSort(array, mid + 1, right);
+
+      /**
+       * merge both the sorted arrays
+       */
+      merge(array, left, mid, right);
     }
   }
 
-  public static void merge(int[] arr, int l, int m, int r) {
+  public static void merge(int[] array, int left, int mid, int right) {
 
-    // Find sizes of two subarrays to be merged
-    int n1 = m - l + 1;
-    int n2 = r - m;
+    int leftSize = mid - left + 1;
+    int rightSize = right - mid;
 
-    /* Create temp arrays */
-    int L[] = new int[n1];
-    int R[] = new int[n2];
+    int[] leftArray = new int[leftSize];
+    int[] rightArray = new int[rightSize];
 
-    /* Copy data to temp arrays */
-    for (int i = 0; i < n1; ++i)
-      L[i] = arr[l + i];
-    for (int j = 0; j < n2; ++j)
-      R[j] = arr[m + 1 + j];
+    for (int i = 0; i < leftSize; i++) {
+      leftArray[i] = array[left + i];
+    }
 
+    for (int i = 0; i < rightSize; i++) {
+      rightArray[i] = array[mid + 1 + i];
+    }
 
-    /* Merge the temp arrays */
+    int i = 0; // index for leftArray
+    int j = 0; // index for rightArray
 
-    // Initial indexes of first and second subarrays
-    int i = 0, j = 0;
+    int k = left; // index for sorted array
 
-    // Initial index of merged subarry array
-    int k = l;
-    while (i < n1 && j < n2) {
-      if (L[i] <= R[j]) {
-        arr[k] = L[i];
+    while (i < leftSize && j < rightSize) {
+
+      /**
+       * if element from left sub array is smaller than keep it prior to corresponding element from
+       * right sub array in the sorted array
+       * 
+       */
+      if (leftArray[i] <= rightArray[j]) {
+
+        array[k] = leftArray[i];
         i++;
-      } else {
-        arr[k] = R[j];
-        j++;
+        k++;
+        break;
       }
+
+      /**
+       * if element from right sub array is smaller than keep it prior to corresponding element from
+       * left sub array in the sorted array
+       * 
+       */
+      array[k] = rightArray[j];
+      j++;
       k++;
     }
 
-    /* Copy remaining elements of L[] if any */
-    while (i < n1) {
-      arr[k] = L[i];
+    /**
+     * see if any elements remaing in left sub array
+     */
+    while (i < leftSize) {
+
+      array[k] = leftArray[i];
       i++;
       k++;
     }
 
-    /* Copy remaining elements of R[] if any */
-    while (j < n2) {
-      arr[k] = R[j];
+    /**
+     * see if any elements remaining in right sub array
+     */
+    while (j < rightSize) {
+
+      array[k] = rightArray[j];
       j++;
       k++;
     }

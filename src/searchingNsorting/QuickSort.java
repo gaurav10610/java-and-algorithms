@@ -1,15 +1,21 @@
 package searchingNsorting;
 
-import java.util.Arrays;
+import library.ArrayUtils;
 
+/**
+ * Quick Sort Algorithm
+ * 
+ * Time Complexity - Best Case - O(NlogN), Average Case - O(NlogN), Worst Case - O(N^2) 
+ * 
+ * Space Complexity - O(1)
+ *
+ */
 public class QuickSort {
 
   public static void main(String[] args) {
     int array[] = {45, 23, 2, 1, 67, 22, 11, 54, 32, 21, 11, 56, 100, 99, 65, 77, 78, 87};
     quickSort(array, 0, array.length - 1);
-    Arrays.stream(array).forEach((element) -> {
-      System.out.print(element + " ");
-    });
+    ArrayUtils.printIntArray(array);
   }
 
   public static void quickSort(int[] array, int start, int end) {
