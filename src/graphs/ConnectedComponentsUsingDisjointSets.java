@@ -22,7 +22,7 @@ public class ConnectedComponentsUsingDisjointSets {
      * with -1
      * 
      */
-    Arrays.fill(parents, 0, parents.length, -1);
+    Arrays.fill(parents, -1);
 
     MyUnweightedGraph graph = new MyUnweightedGraph(totalNodes, false);
 
