@@ -10,25 +10,24 @@ import java.util.List;
  */
 public class PrintAllSubstrings {
 
-  public static void main(String[] args) {
-    String string = "abbc";
-    List<String> substringsList = printSubstrings(string);
-    System.out.print(substringsList);
-  }
+	public static void main(String[] args) {
+		String string = "abbc";
+		List<String> substringsList = printSubstrings(string);
+		System.out.print(substringsList);
+	}
 
-  public static List<String> printSubstrings(String string) {
+	public static List<String> printSubstrings(String string) {
 
-    List<String> substringsList = new ArrayList<>();
+		List<String> substringsList = new ArrayList<>();
 
-    for (int substringLength = 1; substringLength <= string.length(); substringLength++) {
+		for (int substringLength = 1; substringLength <= string.length(); substringLength++) {
 
-      int substringStartIndex = 0;
-      while (substringStartIndex + substringLength <= string.length()) {
-        substringsList
-            .add(string.substring(substringStartIndex, substringStartIndex + substringLength));
-        substringStartIndex++;
-      }
-    }
-    return substringsList;
-  }
+			int substringStartIndex = 0;
+			while (substringStartIndex + substringLength <= string.length()) {
+				substringsList.add(string.substring(substringStartIndex, substringStartIndex + substringLength));
+				substringStartIndex++;
+			}
+		}
+		return substringsList;
+	}
 }

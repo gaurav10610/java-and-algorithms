@@ -15,20 +15,20 @@ import library.StackUsingQueue;
  *
  */
 public class StackUsingTwoQueues {
-  public static void main(String[] args) {
-    
-    StackUsingQueue<Integer> stack = new StackUsingQueue<Integer>();
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
+	public static void main(String[] args) {
 
-    System.out.println("current size: " + stack.size());
-    System.out.println(stack.peek());
-    stack.pop();
-    System.out.println(stack.peek());
-    stack.pop();
-    System.out.println(stack.peek());
+		StackUsingQueue<Integer> stack = new StackUsingQueue<Integer>();
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
 
-    System.out.println("current size: " + stack.size());
-  }
+		System.out.println("current size: " + stack.size());
+		System.out.println(stack.peek());
+		stack.pop();
+		System.out.println(stack.peek());
+		stack.pop();
+		System.out.println(stack.peek());
+
+		System.out.println("current size: " + stack.size());
+	}
 }

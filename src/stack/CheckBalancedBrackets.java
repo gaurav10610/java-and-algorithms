@@ -1,6 +1,6 @@
 package stack;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -11,127 +11,67 @@ import java.util.Stack;
  * 
  * Examples -
  * 
- * Input1: exp = “[()]{}{[()()]()}”
+ * Input1: exp = ï¿½[()]{}{[()()]()}ï¿½
  * 
  * Output1: Balanced
  *
- * Input2: exp = “[(])”
+ * Input2: exp = ï¿½[(])ï¿½
  * 
  * Output2: Not Balanced
  *
  */
 public class CheckBalancedBrackets {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-    String expression1 = "[()]{}{[()()]()}";
-    String expression2 = "[(])";
+		String expression1 = "[()]{}{[()()]()}";
+		String expression2 = "[(])";
 
-    List<String> expressions = new ArrayList<>();
-    expressions.add(expression1);
-    expressions.add(expression2);
+		List<String> expressions = Arrays.asList(expression1, expression2);
 
-    Stack<Character> stack = new Stack<>();
+		expressions.forEach(expression -> System.out.printf("is expression: %s is valid? %s \n", expression,
+				isValidExpression(expression)));
 
-    for (String expression : expressions) {
+	}
 
-      /**
-       * 
-       * empty the stack
-       */
-      stack.clear();
+	public static boolean isValidExpression(String expression) {
+		Stack<Character> stack = new Stack<>();
 
-      boolean isBalancedFlag = true;
+		for (char c : expression.toCharArray()) {
 
-      for (char c : expression.toCharArray()) {
+			if (c == '[' || c == '{' || c == '(') {
+				stack.push(c);
+			} else if (c == ']') {
 
-        switch (c) {
+				if (stack.peek() == '[') {
+					stack.pop();
+				} else {
+					return false;
+				}
+			} else if (c == '}') {
 
-          case '(':
-            stack.add(c);
-            break;
+				if (stack.peek() == '{') {
+					stack.pop();
+				} else {
+					return false;
+				}
+			} else if (c == ')') {
 
-          case ')':
+				if (stack.peek() == '(') {
+					stack.pop();
+				} else {
+					return false;
+				}
+			}
+		}
 
-            /**
-             * 
-             * iterate/keep popping the stack until an opening bracket is not found in the
-             * expression
-             * 
-             * 
-             */
-            while (!stack.isEmpty() && stack.peek().charValue() != '(') {
-              stack.pop();
-            }
-
-            /**
-             * 
-             * pop the opening bracket from the stack
-             * 
-             */
-            if (!stack.isEmpty() && stack.peek().charValue() == '(') {
-              stack.pop();
-            } else {
-
-              /**
-               * 
-               * top element should be an opening bracket in the stack else expression is not
-               * balanced
-               * 
-               */
-              isBalancedFlag = false;
-              break;
-            }
-            break;
-
-          case '[':
-            stack.add(c);
-            break;
-
-          case ']':
-            while (!stack.isEmpty() && stack.peek().charValue() != '[') {
-              stack.pop();
-            }
-
-            if (!stack.isEmpty() && stack.peek().charValue() == '[') {
-              stack.pop();
-            } else {
-              isBalancedFlag = false;
-              break;
-            }
-            break;
-
-          case '{':
-            stack.add(c);
-            break;
-
-          case '}':
-
-            while (!stack.isEmpty() && stack.peek().charValue() != '{') {
-              stack.pop();
-            }
-
-            if (!stack.isEmpty() && stack.peek().charValue() == '{') {
-              stack.pop();
-            } else {
-              isBalancedFlag = false;
-              break;
-            }
-            break;
-        }
-      }
-
-      /**
-       * 
-       * if stack is empty after traversing whole expression then the expression is balanced
-       * 
-       */
-      if (isBalancedFlag && stack.isEmpty()) {
-        System.out.println(expression + " is balanced");
-      } else {
-        System.out.println(expression + " is not balanced");
-      }
-    }
-  }
+		/**
+		 * 
+		 * if stack is empty after traversing whole expression then the expression is
+		 * balanced
+		 * 
+		 */
+		return stack.isEmpty();
+	}
 
 }

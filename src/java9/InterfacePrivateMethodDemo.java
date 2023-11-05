@@ -1,38 +1,36 @@
 package java9;
 
 public class InterfacePrivateMethodDemo {
-  
-  public static void main(String[] args) {
-    
-    UsernameService usernameService = new UsernameServiceImpl();
-    System.out.println(usernameService.getServiceName());
-  }
-}
 
+	public static void main(String[] args) {
+
+		UsernameService usernameService = new UsernameServiceImpl();
+		System.out.println(usernameService.getServiceName());
+	}
+}
 
 @FunctionalInterface
 interface UsernameService {
-  public String getServiceName();
+	public String getServiceName();
 
-  default String getFirstName() {
-    return getName("Gaurvav ");
-  }
+	default String getFirstName() {
+		return getName("Gaurav ");
+	}
 
-  default String getLastName() {
-    return getName("Kumar Yadav");
-  }
+	default String getLastName() {
+		return getName("Kumar Yadav");
+	}
 
-  private String getName(String name) {
-    return name;
-  }
+	private String getName(String name) {
+		return name;
+	}
 }
-
 
 class UsernameServiceImpl implements UsernameService {
 
-  @Override
-  public String getServiceName() {
-    return getFirstName() + getLastName();
-  }
+	@Override
+	public String getServiceName() {
+		return getFirstName() + getLastName();
+	}
 
 }

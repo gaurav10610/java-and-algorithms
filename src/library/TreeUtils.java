@@ -6,228 +6,226 @@ import java.util.Stack;
 
 public class TreeUtils {
 
-  /**
-   * recursive in-order traversal of binary tree
-   */
-  public static void printInOrderTraversalRecursive(TreeNode root) {
-    if (root != null) {
-      printInOrderTraversalRecursive(root.getLeftChild());
-      System.out.print(root.getValue() + " ");
-      printInOrderTraversalRecursive(root.getRightChild());
-    }
-  }
+	/**
+	 * recursive in-order traversal of binary tree
+	 */
+	public static void printInOrderTraversalRecursive(TreeNode root) {
+		if (root != null) {
+			printInOrderTraversalRecursive(root.getLeftChild());
+			System.out.print(root.getValue() + " ");
+			printInOrderTraversalRecursive(root.getRightChild());
+		}
+	}
 
-  /**
-   * recursive pre-order traversal of binary tree
-   */
-  public static void printPreOrderTraversalRecursive(TreeNode root) {
-    if (root != null) {
-      System.out.print(root.getValue() + " ");
-      printPreOrderTraversalRecursive(root.getLeftChild());
-      printPreOrderTraversalRecursive(root.getRightChild());
-    }
-  }
+	/**
+	 * recursive pre-order traversal of binary tree
+	 */
+	public static void printPreOrderTraversalRecursive(TreeNode root) {
+		if (root != null) {
+			System.out.print(root.getValue() + " ");
+			printPreOrderTraversalRecursive(root.getLeftChild());
+			printPreOrderTraversalRecursive(root.getRightChild());
+		}
+	}
 
-  /**
-   * recursive post-order traversal of binary tree
-   */
-  public static void printPostOrderTraversalRecursive(TreeNode root) {
-    if (root != null) {
-      printPostOrderTraversalRecursive(root.getLeftChild());
-      printPostOrderTraversalRecursive(root.getRightChild());
-      System.out.print(root.getValue() + " ");
-    }
-  }
+	/**
+	 * recursive post-order traversal of binary tree
+	 */
+	public static void printPostOrderTraversalRecursive(TreeNode root) {
+		if (root != null) {
+			printPostOrderTraversalRecursive(root.getLeftChild());
+			printPostOrderTraversalRecursive(root.getRightChild());
+			System.out.print(root.getValue() + " ");
+		}
+	}
 
-  /**
-   * iterative pre-order traversal of binary tree
-   */
-  public static void printPreOrderTraversalIterative(TreeNode root) {
-    Stack<TreeNode> stack = new Stack<>();
-    stack.push(root);
-    while (!stack.isEmpty()) {
+	/**
+	 * iterative pre-order traversal of binary tree
+	 */
+	public static void printPreOrderTraversalIterative(TreeNode root) {
+		Stack<TreeNode> stack = new Stack<>();
+		stack.push(root);
+		while (!stack.isEmpty()) {
 
-      TreeNode node = stack.pop();
-      System.out.print(node.getValue() + " ");
+			TreeNode node = stack.pop();
+			System.out.print(node.getValue() + " ");
 
-      if (node.getRightChild() != null) {
-        stack.push(node.getRightChild());
-      }
-      if (node.getLeftChild() != null) {
-        stack.push(node.getLeftChild());
-      }
-    }
-  }
+			if (node.getRightChild() != null) {
+				stack.push(node.getRightChild());
+			}
+			if (node.getLeftChild() != null) {
+				stack.push(node.getLeftChild());
+			}
+		}
+	}
 
-  /**
-   * iterative post-order traversal of binary tree
-   */
-  public static void printPostOrderTraversalIterative(TreeNode root)
-      throws CloneNotSupportedException {
+	/**
+	 * iterative post-order traversal of binary tree
+	 */
+	public static void printPostOrderTraversalIterative(TreeNode root) throws CloneNotSupportedException {
 
-    // clone the original root as algorithm will be updating references the tree
-    TreeNode newRoot = (TreeNode) root.clone();
-    Stack<TreeNode> stack = new Stack<>();
-    stack.push(newRoot);
+		// clone the original root as algorithm will be updating references the tree
+		TreeNode newRoot = (TreeNode) root.clone();
+		Stack<TreeNode> stack = new Stack<>();
+		stack.push(newRoot);
 
-    while (!stack.isEmpty()) {
-      TreeNode node = stack.peek();
+		while (!stack.isEmpty()) {
+			TreeNode node = stack.peek();
 
-      /**
-       * 
-       * check if left child is null then check if right child is null or not
-       * 
-       * if right child is not null then push the right child in the stack and make the right child
-       * of the node as null to make sure that we never visit it again when we'll get back to parent
-       * again
-       * 
-       * if right child is null then simply pop the node
-       */
-      if (node.leftChild == null) {
-        
-        if (node.rightChild != null) {
-          
-          stack.push(node.getRightChild());
-          node.setRightChild(null);
-        } else {
-          
-          System.out.print(node.getValue() + " ");
-          stack.pop();
-        }
-      } else {
+			/**
+			 * 
+			 * check if left child is null then check if right child is null or not
+			 * 
+			 * if right child is not null then push the right child in the stack and make
+			 * the right child of the node as null to make sure that we never visit it again
+			 * when we'll get back to parent again
+			 * 
+			 * if right child is null then simply pop the node
+			 */
+			if (node.leftChild == null) {
 
-        /**
-         * 
-         * if left child is not null then push the left child in the stack and make the left child
-         * of the node as null to make sure that we never visit it again when we'll get back to
-         * parent again
-         */
-        stack.push(node.getLeftChild());
-        node.setLeftChild(null);
-      }
-    }
-  }
+				if (node.rightChild != null) {
 
-  /**
-   * iterative in-order traversal of binary tree
-   */
-  public static void printInOrderTraversalIterative(TreeNode root)
-      throws CloneNotSupportedException {
+					stack.push(node.getRightChild());
+					node.setRightChild(null);
+				} else {
 
-    // clone the original root as algorithm will be updating references the tree
-    TreeNode newRoot = (TreeNode) root.clone();
-    Stack<TreeNode> stack = new Stack<>();
-    stack.push(newRoot);
+					System.out.print(node.getValue() + " ");
+					stack.pop();
+				}
+			} else {
 
-    while (!stack.isEmpty()) {
-      TreeNode node = stack.peek();
+				/**
+				 * 
+				 * if left child is not null then push the left child in the stack and make the
+				 * left child of the node as null to make sure that we never visit it again when
+				 * we'll get back to parent again
+				 */
+				stack.push(node.getLeftChild());
+				node.setLeftChild(null);
+			}
+		}
+	}
 
-      /**
-       * 
-       * check if left child is null then pop the node and push the right child in the stack if it
-       * is not null
-       */
-      if (node.leftChild == null) {
-        System.out.print(node.getValue() + " ");
-        stack.pop();
+	/**
+	 * iterative in-order traversal of binary tree
+	 */
+	public static void printInOrderTraversalIterative(TreeNode root) throws CloneNotSupportedException {
 
-        if (node.rightChild != null) {
-          stack.push(node.getRightChild());
-        }
-      } else {
+		// clone the original root as algorithm will be updating references the tree
+		TreeNode newRoot = (TreeNode) root.clone();
+		Stack<TreeNode> stack = new Stack<>();
+		stack.push(newRoot);
 
-        /**
-         * 
-         * if left child is not null then push the left child in the stack and make the left child
-         * of the node as null to make sure that we never visit it again when we'll get back to
-         * parent again
-         */
-        stack.push(node.getLeftChild());
-        node.setLeftChild(null);
-      }
-    }
-  }
+		while (!stack.isEmpty()) {
+			TreeNode node = stack.peek();
 
-  /**
-   * iterative level-order traversal of binary tree
-   */
-  public static void printLevelOrderTraversal(TreeNode root) {
-    Queue<TreeNode> queue = new LinkedList<>();
-    queue.add(root);
+			/**
+			 * 
+			 * check if left child is null then pop the node and push the right child in the
+			 * stack if it is not null
+			 */
+			if (node.leftChild == null) {
+				System.out.print(node.getValue() + " ");
+				stack.pop();
 
-    while (!queue.isEmpty()) {
-      TreeNode node = queue.poll();
-      System.out.print(node.getValue() + " ");
+				if (node.rightChild != null) {
+					stack.push(node.getRightChild());
+				}
+			} else {
 
-      if (node.getLeftChild() != null) {
-        queue.add(node.getLeftChild());
-      }
+				/**
+				 * 
+				 * if left child is not null then push the left child in the stack and make the
+				 * left child of the node as null to make sure that we never visit it again when
+				 * we'll get back to parent again
+				 */
+				stack.push(node.getLeftChild());
+				node.setLeftChild(null);
+			}
+		}
+	}
 
-      if (node.getRightChild() != null) {
-        queue.add(node.getRightChild());
-      }
-    }
-  }
+	/**
+	 * iterative level-order traversal of binary tree
+	 */
+	public static void printLevelOrderTraversal(TreeNode root) {
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.add(root);
 
-  /**
-   * this will find the path from root to the node having given value 
-   * 
-   * @param root
-   * @param nodeValue
-   * @param path
-   * @return
-   */
-  public static boolean findNodePathFromRoot(TreeNode root, int nodeValue, Stack<TreeNode> path) {
+		while (!queue.isEmpty()) {
+			TreeNode node = queue.poll();
+			System.out.print(node.getValue() + " ");
 
-    if (root == null) {
+			if (node.getLeftChild() != null) {
+				queue.add(node.getLeftChild());
+			}
 
-      return false;
-    } else {
+			if (node.getRightChild() != null) {
+				queue.add(node.getRightChild());
+			}
+		}
+	}
 
-      // add current node in path
-      path.add(root);
+	/**
+	 * this will find the path from root to the node having given value
+	 * 
+	 * @param root
+	 * @param nodeValue
+	 * @param path
+	 * @return
+	 */
+	public static boolean findNodePathFromRoot(TreeNode root, int nodeValue, Stack<TreeNode> path) {
 
-      if (root.getValue() == nodeValue) {
-        return true;
-      }
+		if (root == null) {
 
-      boolean foundOnLeft = findNodePathFromRoot(root.getLeftChild(), nodeValue, path);
+			return false;
+		} else {
 
-      if (foundOnLeft) {
-        return true;
-      }
+			// add current node in path
+			path.add(root);
 
-      boolean foundOnRight = findNodePathFromRoot(root.getRightChild(), nodeValue, path);
+			if (root.getValue() == nodeValue) {
+				return true;
+			}
 
-      if (foundOnRight) {
-        return true;
-      }
+			boolean foundOnLeft = findNodePathFromRoot(root.getLeftChild(), nodeValue, path);
 
-      // not found among the descendents of this node
-      path.pop();
+			if (foundOnLeft) {
+				return true;
+			}
 
-      return false;
-    }
-  }
+			boolean foundOnRight = findNodePathFromRoot(root.getRightChild(), nodeValue, path);
 
-  public static TreeNode findLowestCommonAncestor(TreeNode root, int nodeValue1, int nodeValue2,
-      Stack<TreeNode> rootToNode1Path, Stack<TreeNode> rootToNode2Path) {
+			if (foundOnRight) {
+				return true;
+			}
 
-    TreeNode lca = null;
+			// not found among the descendents of this node
+			path.pop();
 
-    int i = 0;
-    while (i < rootToNode1Path.size() && i < rootToNode2Path.size()) {
+			return false;
+		}
+	}
 
-      if (rootToNode1Path.get(i).getValue() == rootToNode2Path.get(i).getValue()) {
+	public static TreeNode findLowestCommonAncestor(TreeNode root, int nodeValue1, int nodeValue2,
+			Stack<TreeNode> rootToNode1Path, Stack<TreeNode> rootToNode2Path) {
 
-        lca = rootToNode1Path.get(i);
-      } else {
+		TreeNode lca = null;
 
-        break;
-      }
-      i++;
-    }
+		int i = 0;
+		while (i < rootToNode1Path.size() && i < rootToNode2Path.size()) {
 
-    return lca;
-  }
+			if (rootToNode1Path.get(i).getValue() == rootToNode2Path.get(i).getValue()) {
+
+				lca = rootToNode1Path.get(i);
+			} else {
+
+				break;
+			}
+			i++;
+		}
+
+		return lca;
+	}
 }

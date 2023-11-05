@@ -22,26 +22,26 @@ public class SittingArrangement {
 			System.out.print(oppositeSeat);
 			int seatNum = oppositeSeat % 6;
 
-				switch (seatNum) {
-				case 0:
-					System.out.println(" WS");
-					break;
-				case 1:
-					System.out.println(" WS");
-					break;
-				case 2:
-					System.out.println(" MS");
-					break;
-				case 3:
-					System.out.println(" AS");
-					break;
-				case 4:
-					System.out.println(" AS");
-					break;
-				case 5:
-					System.out.println(" MS");
-					break;
-				}
+			switch (seatNum) {
+			case 0:
+				System.out.println(" WS");
+				break;
+			case 1:
+				System.out.println(" WS");
+				break;
+			case 2:
+				System.out.println(" MS");
+				break;
+			case 3:
+				System.out.println(" AS");
+				break;
+			case 4:
+				System.out.println(" AS");
+				break;
+			case 5:
+				System.out.println(" MS");
+				break;
+			}
 
 		}
 

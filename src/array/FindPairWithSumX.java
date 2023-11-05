@@ -1,40 +1,59 @@
 package array;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
 
 /**
  * 
- * Given an array A[] of n numbers and another number x, determines whether or not there exist two
- * elements in S whose sum is exactly X.
+ * Given an array A[] of n numbers and another number x, determines whether or
+ * not there exist two elements in S whose sum is exactly X.
  * 
- * Input: arr[] = {0, -1, 2, -3, 1}
+ * Input: array = {0, -1, 2, -3, 1}
  * 
  * sum = -2
  * 
  * Output: -3, 1
+ * 
+ * Time Complexity - O(NlogN) + O(N)
+ * 
  */
 public class FindPairWithSumX {
 
-  public static void main(String[] args) {
-    int[] array = {0, -1, 2, -3, 1};
+	public static void main(String[] args) {
+		int[] array = { 0, -1, 2, -3, 1 };
 
-    int sum = 0;
+		/**
+		 * 
+		 * time complexity - O(NlogN)
+		 * 
+		 */
+		Arrays.sort(array);
 
-    Set<Integer> set = new HashSet<>();
+		int start = 0;
+		int end = array.length - 1;
 
-    for (int number : array) {
+		int X = 0;
 
-      int difference = sum - number;
+		/**
+		 * 
+		 * time complexity - O(N)
+		 * 
+		 */
+		while (start < end) {
 
-      if (set.contains(difference)) {
+			int sum = array[start] + array[end];
 
-        System.out.println("sum exist in the array");
-        return;
-      }
-      set.add(number);
-    }
-    System.out.println("sum does not exist in the array");
-  }
+			if (sum == X) {
+
+				System.out.println("sum exist in the array");
+				return;
+			} else if (sum > X) {
+				end--;
+			} else {
+				start++;
+			}
+		}
+
+		System.out.println("sum does not exist in the array");
+	}
 
 }

@@ -5,170 +5,179 @@ import java.util.List;
 
 /**
  * 
- * The N Queen is the problem of placing N chess queens on an N×N chessboard so that no two queens
- * attack each other.
+ * The N Queen is the problem of placing N chess queens on an Nï¿½N chessboard so
+ * that no two queens attack each other.
  *
  * Solution Hint - Use backtracking
  * 
  */
 public class NQueensProblem {
 
-  public static void main(String[] args) {
-    int boardSize = 4;
+	public static void main(String[] args) {
+		int boardSize = 8;
 
-    List<Position> queensPositions = new ArrayList<>();
+		List<Position> queensPositions = new ArrayList<>();
 
-    /**
-     * try placing all queens recursively
-     * 
-     */
-    boolean isAllQueensPlaced = placeQueen(queensPositions, 0, boardSize);
+		/**
+		 * try placing all queens recursively
+		 * 
+		 */
+		boolean isAllQueensPlaced = placeQueen(queensPositions, 0, boardSize);
 
-    if (isAllQueensPlaced) {
+		if (isAllQueensPlaced) {
 
-      for (Position position : queensPositions) {
+			for (Position position : queensPositions) {
 
-        System.out.printf("queen position: ['%d', '%d'] \n", position.row, position.column);
-      }
-    } else {
+				System.out.printf("%s ", position);
+			}
+		} else {
 
-      System.out.printf("unable to place all queens on a board of size %d", boardSize);
-    }
-  }
+			System.out.printf("unable to place all queens on a board of size %d", boardSize);
+		}
+	}
 
-  /**
-   * place a queen
-   * 
-   * @param queensPositions
-   * @param queenNumber
-   * @param boardSize
-   * @return
-   */
-  public static boolean placeQueen(List<Position> queensPositions, int queenNumber, int boardSize) {
-    boolean isQueenPlaced = false;
+	/**
+	 * place a queen
+	 * 
+	 * @param queensPositions
+	 * @param queenNumber
+	 * @param boardSize
+	 * @return
+	 */
+	public static boolean placeQueen(List<Position> queensPositions, int queenNumber, int boardSize) {
+		boolean isQueenPlaced = false;
 
-    for (int c = 0; c < boardSize; c++) {
+		for (int c = 0; c < boardSize; c++) {
 
-      /**
-       * create a position of current queen using row number and current column
-       * 
-       */
-      Position currentQueenPosition = new Position(queenNumber, c);
+			/**
+			 * create a position of current queen using row number and current column
+			 * 
+			 */
+			Position currentQueenPosition = new Position(queenNumber, c);
 
-      /**
-       * 
-       * evaluate if placing the current queen at this position will not led to an attack by other
-       * already placed queens
-       * 
-       */
-      boolean isAttacked = isQueenAttacked(queensPositions, currentQueenPosition);
+			/**
+			 * 
+			 * evaluate if placing the current queen at this position will not led to an
+			 * attack by other already placed queens
+			 * 
+			 */
+			boolean isAttacked = isQueenAttacked(queensPositions, currentQueenPosition);
 
-      /**
-       * 
-       * process if queen is placed at a safe position
-       * 
-       */
-      if (!isAttacked) {
+			/**
+			 * 
+			 * process if queen is placed at a safe position
+			 * 
+			 */
+			if (!isAttacked) {
 
-        /**
-         * 
-         * fix current queen's position
-         */
-        queensPositions.add(currentQueenPosition);
+				/**
+				 * 
+				 * fix current queen's position
+				 */
+				queensPositions.add(currentQueenPosition);
 
-        if (queenNumber < boardSize - 1) {
+				if (queenNumber < boardSize - 1) {
 
-          /**
-           * 
-           * if current queen is not the last queen to be placed then try placing the next queen now
-           * 
-           */
-          boolean isOtherQueensPlaced = placeQueen(queensPositions, queenNumber + 1, boardSize);
+					/**
+					 * 
+					 * if current queen is not the last queen to be placed then try placing the next
+					 * queen now
+					 * 
+					 */
+					boolean isOtherQueensPlaced = placeQueen(queensPositions, queenNumber + 1, boardSize);
 
-          if (isOtherQueensPlaced) {
+					if (isOtherQueensPlaced) {
 
-            /**
-             * 
-             * if all subsequent queens are placed then mark current queen as placed and return
-             */
-            isQueenPlaced = true;
-            break;
-          }
+						/**
+						 * 
+						 * if all subsequent queens are placed then mark current queen as placed and
+						 * return
+						 */
+						isQueenPlaced = true;
+						break;
+					}
 
-          /**
-           * 
-           * if current queen's current position is laeading to attack on other subsequent queen
-           * then revert back the position that we fixed before and try placing current queen on
-           * next adjacent position
-           * 
-           */
-          queensPositions.remove(queensPositions.size() - 1);
-        } else {
+					/**
+					 * 
+					 * if current queen's current position is laeading to attack on other subsequent
+					 * queen then revert back the position that we fixed before and try placing
+					 * current queen on next adjacent position
+					 * 
+					 */
+					queensPositions.remove(queensPositions.size() - 1);
+				} else {
 
-          /**
-           * 
-           * if this was the last queen to placed then mark the current queen as placed and return
-           */
-          isQueenPlaced = true;
-          break;
-        }
-      }
-    }
+					/**
+					 * 
+					 * if this was the last queen to placed then mark the current queen as placed
+					 * and return
+					 */
+					isQueenPlaced = true;
+					break;
+				}
+			}
+		}
 
-    return isQueenPlaced;
-  }
+		return isQueenPlaced;
+	}
 
-  /**
-   * check if placing the current queen at this position will not led to an attack by other already
-   * placed queens
-   * 
-   * @param queensPositions
-   * @param currentQueenPosition
-   * @return
-   */
-  public static boolean isQueenAttacked(List<Position> queensPositions,
-      Position currentQueenPosition) {
+	/**
+	 * check if placing the current queen at this position will not led to an attack
+	 * by other already placed queens
+	 * 
+	 * @param queensPositions
+	 * @param currentQueenPosition
+	 * @return
+	 */
+	public static boolean isQueenAttacked(List<Position> queensPositions, Position currentQueenPosition) {
 
-    boolean isAttacked = false;
+		boolean isAttacked = false;
 
-    for (Position prevQueenPosition : queensPositions) {
+		for (Position prevQueenPosition : queensPositions) {
 
-      /**
-       * 
-       * check the following conditions -
-       * 
-       * 1. current queen is not being placed in same row as any of already placed queens
-       * 
-       * 2. current queen is not being placed in same column as any of already placed queens
-       * 
-       * 3. current queen is not being placed in same diagnol as any of already placed queens
-       * 
-       */
-      if (prevQueenPosition.row == currentQueenPosition.row
-          || prevQueenPosition.column == currentQueenPosition.column
-          || (prevQueenPosition.row + prevQueenPosition.column) == (currentQueenPosition.row
-              + currentQueenPosition.column)
-          || prevQueenPosition.column - prevQueenPosition.row == currentQueenPosition.column
-              - currentQueenPosition.row) {
+			/**
+			 * 
+			 * check the following conditions -
+			 * 
+			 * 1. current queen is not being placed in same row as any of already placed
+			 * queens
+			 * 
+			 * 2. current queen is not being placed in same column as any of already placed
+			 * queens
+			 * 
+			 * 3. current queen is not being placed in same diagonal as any of already
+			 * placed queens
+			 * 
+			 */
+			if (prevQueenPosition.row == currentQueenPosition.row
+					|| prevQueenPosition.column == currentQueenPosition.column
+					|| (prevQueenPosition.row + prevQueenPosition.column) == (currentQueenPosition.row
+							+ currentQueenPosition.column)
+					|| prevQueenPosition.column - prevQueenPosition.row == currentQueenPosition.column
+							- currentQueenPosition.row) {
 
-        return true;
-      }
-    }
-    return isAttacked;
-  }
+				isAttacked = true;
+				break;
+			}
+		}
+		return isAttacked;
+	}
 }
-
 
 /**
  * Custom data structure to represent a position on the chess board
  *
  */
 class Position {
-  int row;
-  int column;
+	int row;
+	int column;
 
-  public Position(int row, int column) {
-    this.row = row;
-    this.column = column;
-  }
+	public Position(int row, int column) {
+		this.row = row;
+		this.column = column;
+	}
+
+	public String toString() {
+		return "[" + row + ", " + column + "]";
+	}
 }

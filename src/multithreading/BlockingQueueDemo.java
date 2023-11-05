@@ -6,71 +6,70 @@ import java.util.concurrent.TimeUnit;
 
 public class BlockingQueueDemo {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-    ProducerConsumerFactory producerConsumerFactory = new ProducerConsumerFactory(1);
+		ProducerConsumerFactory producerConsumerFactory = new ProducerConsumerFactory(1);
 
-    Thread thread1 = new Thread(new Runnable() {
+		Thread producerThread = new Thread(new Runnable() {
 
-      @Override
-      public void run() {
+			@Override
+			public void run() {
 
-        try {
+				try {
 
-          // produce in queue
-          producerConsumerFactory.produce();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-      }
-    });
+					// produce in queue
+					producerConsumerFactory.produce();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
-    Thread thread2 = new Thread(new Runnable() {
+		Thread consumerThread = new Thread(new Runnable() {
 
-      @Override
-      public void run() {
+			@Override
+			public void run() {
 
-        try {
+				try {
 
-          // consume from queue
-          producerConsumerFactory.consume();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-      }
-    });
+					// consume from queue
+					producerConsumerFactory.consume();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
-    thread1.start();
-    thread2.start();
+		producerThread.start();
+		consumerThread.start();
 
-  }
+	}
 }
-
 
 class ProducerConsumerFactory {
 
-  private BlockingQueue<Integer> queue;
-  private int count;
+	private BlockingQueue<Integer> queue;
+	private int count;
 
-  public ProducerConsumerFactory(int capacity) {
-    this.queue = new ArrayBlockingQueue<Integer>(capacity);
-    this.count = 0;
-  }
+	public ProducerConsumerFactory(int capacity) {
+		this.queue = new ArrayBlockingQueue<Integer>(capacity);
+		this.count = 0;
+	}
 
-  public void produce() throws InterruptedException {
+	public void produce() throws InterruptedException {
 
-    while (true) {
-      queue.put(++count);
-      System.out.println("Produced " + count + " in queue");
-      TimeUnit.MILLISECONDS.sleep(1000);
-    }
-  }
+		while (true) {
+			queue.put(++count);
+			System.out.println("Produced " + count + " in queue");
+			TimeUnit.MILLISECONDS.sleep(1000);
+		}
+	}
 
-  public void consume() throws InterruptedException {
+	public void consume() throws InterruptedException {
 
-    while (true) {
-      System.out.println("Consumed " + queue.take() + " from queue");
-      TimeUnit.MILLISECONDS.sleep(500);
-    }
-  }
+		while (true) {
+			System.out.println("Consumed " + queue.take() + " from queue");
+			TimeUnit.MILLISECONDS.sleep(500);
+		}
+	}
 }

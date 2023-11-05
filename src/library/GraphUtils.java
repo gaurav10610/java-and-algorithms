@@ -7,90 +7,90 @@ import java.util.Stack;
 
 public class GraphUtils {
 
-  /**
-   * Recursive Depth First Traversal of a graph
-   * 
-   * @param graph
-   * @param root
-   */
-  public static void recursiveDepthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex,
-      boolean[] visitedArray) {
+	/**
+	 * Recursive Depth First Traversal of a graph
+	 * 
+	 * @param graph
+	 * @param root
+	 */
+	public static void recursiveDepthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex,
+			boolean[] visitedArray) {
 
-    System.out.print(rootNodeIndex + "->");
-    visitedArray[rootNodeIndex] = true;
+		System.out.print(rootNodeIndex + "->");
+		visitedArray[rootNodeIndex] = true;
 
-    for (Integer adjacent : graph.getAdjacents(rootNodeIndex)) {
-      
-      if (!visitedArray[adjacent]) {
-        recursiveDepthFirstTraversal(graph, adjacent, visitedArray);
-      }
-    }
-  }
+		for (Integer adjacent : graph.getAdjacents(rootNodeIndex)) {
 
-  /**
-   * Iterative Depth First Traversal of a graph
-   * 
-   * @param graph
-   * @param root
-   */
-  public static void iterativeDepthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex) {
+			if (!visitedArray[adjacent]) {
+				recursiveDepthFirstTraversal(graph, adjacent, visitedArray);
+			}
+		}
+	}
 
-    System.out.print("Iterative Depth First Traversal: ");
+	/**
+	 * Iterative Depth First Traversal of a graph
+	 * 
+	 * @param graph
+	 * @param root
+	 */
+	public static void iterativeDepthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex) {
 
-    boolean[] visitedArray = new boolean[graph.getTotalNodes()];
-    Arrays.fill(visitedArray, false);
+		System.out.print("Iterative Depth First Traversal: ");
 
-    Stack<Integer> stack = new Stack<Integer>();
-    stack.add(rootNodeIndex);
+		boolean[] visitedArray = new boolean[graph.getTotalNodes()];
+		Arrays.fill(visitedArray, false);
 
-    while (!stack.isEmpty()) {
+		Stack<Integer> stack = new Stack<Integer>();
+		stack.add(rootNodeIndex);
 
-      Integer visitedNode = stack.pop();
+		while (!stack.isEmpty()) {
 
-      if (!visitedArray[visitedNode]) {
-        System.out.print(visitedNode + "->");
-        visitedArray[visitedNode] = true;
-      }
+			Integer visitedNode = stack.pop();
 
-      for (Integer adjacent : graph.getAdjacents(visitedNode)) {
-        if (!visitedArray[adjacent]) {
-          stack.add(adjacent);
-        }
-      }
-    }
-    System.out.println("");
-  }
+			if (!visitedArray[visitedNode]) {
+				System.out.print(visitedNode + "->");
+				visitedArray[visitedNode] = true;
+			}
 
-  /**
-   * Breadth First Traversal of a graph
-   * 
-   * @param graph
-   * @param root
-   */
-  public static void breadthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex) {
+			for (Integer adjacent : graph.getAdjacents(visitedNode)) {
+				if (!visitedArray[adjacent]) {
+					stack.add(adjacent);
+				}
+			}
+		}
+		System.out.println("");
+	}
 
-    System.out.print("Breadth First Traversal: ");
+	/**
+	 * Breadth First Traversal of a graph
+	 * 
+	 * @param graph
+	 * @param root
+	 */
+	public static void breadthFirstTraversal(MyUnweightedGraph graph, Integer rootNodeIndex) {
 
-    boolean[] visitedArray = new boolean[graph.getTotalNodes()];
-    Arrays.fill(visitedArray, false);
+		System.out.print("Breadth First Traversal: ");
 
-    Queue<Integer> queue = new LinkedList<Integer>();
-    queue.add(rootNodeIndex);
-    visitedArray[rootNodeIndex] = true;
+		boolean[] visitedArray = new boolean[graph.getTotalNodes()];
+		Arrays.fill(visitedArray, false);
 
-    while (!queue.isEmpty()) {
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.add(rootNodeIndex);
+		visitedArray[rootNodeIndex] = true;
 
-      Integer visitedNode = queue.poll();
-      System.out.print(visitedNode + "->");
+		while (!queue.isEmpty()) {
 
-      for (Integer adjacentNode : graph.getAdjacents(visitedNode)) {
+			Integer visitedNode = queue.poll();
+			System.out.print(visitedNode + "->");
 
-        if (!visitedArray[adjacentNode]) {
-          queue.add(adjacentNode);
-          visitedArray[adjacentNode] = true;
-        }
-      }
-    }
-    System.out.println("");
-  }
+			for (Integer adjacentNode : graph.getAdjacents(visitedNode)) {
+
+				if (!visitedArray[adjacentNode]) {
+					queue.add(adjacentNode);
+					visitedArray[adjacentNode] = true;
+				}
+			}
+		}
+		System.out.println("");
+	}
 }

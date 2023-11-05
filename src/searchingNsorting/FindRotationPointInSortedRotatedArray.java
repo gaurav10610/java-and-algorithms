@@ -1,13 +1,11 @@
 package searchingNsorting;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * 
- * Find the Point (Index of minimum element from original sorted array) of Rotation in a rotated
- * Sorted Array
+ * Find the Point (Index of minimum element from original sorted array) of
+ * Rotation in a rotated Sorted Array
  * 
  * Input - { 24, 34, 56, 78, 87, 12, 13 }
  * 
@@ -16,72 +14,80 @@ import java.util.List;
  */
 public class FindRotationPointInSortedRotatedArray {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-    /**
-     * 
-     * point of rotation is in the right subarray after taking first mid
-     * 
-     */
-    int[] testArray1 = {21, 24, 56, 78, 87, 12};
+		/**
+		 * 
+		 * point of rotation is in the right subarray after taking first mid
+		 * 
+		 */
+		int[] testArray1 = { 21, 24, 56, 78, 87, 12 };
 
-    /**
-     * 
-     * point of rotation is in the left subarray after taking first mid
-     * 
-     */
-    int[] testArray2 = {100, 24, 56, 78, 87};
+		/**
+		 * 
+		 * point of rotation is in the left subarray after taking first mid
+		 * 
+		 */
+		int[] testArray2 = { 100, 24, 56, 78, 87 };
 
-    /**
-     * 
-     * point of rotation is exactly at mid after taking first mid
-     * 
-     */
-    int[] testArray3 = {100, 101, 56, 78, 87};
+		/**
+		 * 
+		 * point of rotation is exactly at mid after taking first mid
+		 * 
+		 */
+		int[] testArray3 = { 100, 101, 56, 78, 87 };
 
-    List<int[]> testArrays = new ArrayList<>();
-    testArrays.add(testArray1);
-    testArrays.add(testArray2);
-    testArrays.add(testArray3);
+		Arrays.asList(testArray1, testArray2, testArray3)
+				.forEach(array -> System.out.printf("Index of point of rotation for %s is: %d \n",
+						Arrays.toString(array), findRotationIndex(array, 0, array.length - 1)));
+	}
 
-    testArrays.forEach(array -> {
-      int rotationIndex = getRotationIndex(array, 0, array.length - 1) % array.length;
-      System.out.printf("Index of point of rotation for %s is: %d \n", Arrays.toString(array),
-          rotationIndex);
-    });
-  }
+	public static int findRotationIndex(int[] array, int start, int end) {
 
-  public static int getRotationIndex(int[] array, int start, int end) {
+		if (start == end) {
+			return start;
+		}
 
-    if (start <= end) {
+		if (start < end) {
 
-      /**
-       * 
-       * check the necessary condition for subarray of size two
-       */
-      if (end == (start + 1) && array[start] > array[end]) {
-        return end;
-      } else {
+			int mid = start + (end - start) / 2;
 
-        /**
-         * 
-         * start with the mid element
-         */
-        int mid = start + (end - start) / 2;
+			/**
+			 * 
+			 * check for condition [10, 3]
+			 * 
+			 * 10 is at mid
+			 * 
+			 */
+			if (mid < end && array[mid] > array[mid + 1]) {
+				return mid + 1;
+			}
 
-        /**
-         * 
-         * check which subarray whether the left sub array or the right sub array contains the point
-         * of rotation
-         * 
-         */
-        if (array[mid] > array[end]) {
-          return getRotationIndex(array, mid, end);
-        }
-        return getRotationIndex(array, start, mid);
-      }
-    }
-    return 0;
-  }
+			/**
+			 * 
+			 * check for condition [10, 3]
+			 * 
+			 * 3 is at mid
+			 * 
+			 */
+			if (mid > start && array[mid - 1] > array[mid]) {
+				return mid;
+			}
+
+			/**
+			 * 
+			 * compare middle element with the last element to check if either go to right
+			 * or left
+			 * 
+			 */
+			if (array[end] > array[mid]) {
+				return findRotationIndex(array, start, mid - 1);
+			}
+
+			return findRotationIndex(array, mid + 1, end);
+		}
+
+		return 0;
+	}
 
 }

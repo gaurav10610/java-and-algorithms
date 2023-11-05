@@ -1,39 +1,42 @@
 package array;
 
-import java.util.Arrays;
 import java.util.Stack;
 
 /**
  * 
- * Find all the LEADERS in the array. An element is leader if it is greater than all the elements to
- * its right side. And the rightmost element is always a leader.
+ * Find all the LEADERS in the array. An element is leader if it is greater than
+ * all the elements to its right side. And the rightmost element is always a
+ * leader.
  * 
  * For example in the array {16, 17, 4, 3, 5, 2}, leaders are 17, 5 and 2.
+ * 
+ * Time Complexity - O(N)
  *
  */
 public class FindLeaders {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-    int[] array = {16, 17, 4, 3, 5, 2};
+		int[] array = { 16, 17, 4, 3, 5, 2 };
 
-    Stack<Integer> stack = new Stack<>();
+		Stack<Integer> stack = new Stack<>();
 
-    for (int number : array) {
+		for (int number : array) {
 
-      /**
-       * 
-       * keep popping the elements from the stack for which we have found a greater number
-       * 
-       */
-      while (!stack.isEmpty() && stack.peek().intValue() <= number) {
-        stack.pop();
-      }
+			/**
+			 * 
+			 * keep popping the elements from the stack for which we have found a greater
+			 * number
+			 * 
+			 */
+			while (!stack.isEmpty() && stack.peek().intValue() <= number) {
+				stack.pop();
+			}
 
-      stack.add(number);
-    }
+			stack.add(number);
+		}
 
-    System.out.print("Leaders are: " + Arrays.deepToString(stack.toArray()));
-  }
+		System.out.print("Leaders are: " + stack);
+	}
 
 }
