@@ -76,36 +76,7 @@ public class NQueensProblem {
 				 */
 				queensPositions.add(currentQueenPosition);
 
-				if (queenNumber < boardSize - 1) {
-
-					/**
-					 * 
-					 * if current queen is not the last queen to be placed then try placing the next
-					 * queen now
-					 * 
-					 */
-					boolean isOtherQueensPlaced = placeQueen(queensPositions, queenNumber + 1, boardSize);
-
-					if (isOtherQueensPlaced) {
-
-						/**
-						 * 
-						 * if all subsequent queens are placed then mark current queen as placed and
-						 * return
-						 */
-						isQueenPlaced = true;
-						break;
-					}
-
-					/**
-					 * 
-					 * if current queen's current position is laeading to attack on other subsequent
-					 * queen then revert back the position that we fixed before and try placing
-					 * current queen on next adjacent position
-					 * 
-					 */
-					queensPositions.remove(queensPositions.size() - 1);
-				} else {
+				if (queenNumber == boardSize - 1) {
 
 					/**
 					 * 
@@ -115,6 +86,34 @@ public class NQueensProblem {
 					isQueenPlaced = true;
 					break;
 				}
+
+				/**
+				 * 
+				 * if current queen is not the last queen to be placed then try placing the next
+				 * queen now
+				 * 
+				 */
+				boolean isNextQueenPlaced = placeQueen(queensPositions, queenNumber + 1, boardSize);
+
+				if (isNextQueenPlaced) {
+
+					/**
+					 * 
+					 * if all subsequent queens are placed then mark current queen as placed and
+					 * return
+					 */
+					isQueenPlaced = true;
+					break;
+				}
+
+				/**
+				 * 
+				 * if current queen's current position is leading to attack on other subsequent
+				 * queen then revert back the position that we fixed before and try placing
+				 * current queen on next adjacent position
+				 * 
+				 */
+				queensPositions.remove(queensPositions.size() - 1);
 			}
 		}
 
@@ -149,12 +148,9 @@ public class NQueensProblem {
 			 * placed queens
 			 * 
 			 */
-			if (prevQueenPosition.row == currentQueenPosition.row
-					|| prevQueenPosition.column == currentQueenPosition.column
-					|| (prevQueenPosition.row + prevQueenPosition.column) == (currentQueenPosition.row
-							+ currentQueenPosition.column)
-					|| prevQueenPosition.column - prevQueenPosition.row == currentQueenPosition.column
-							- currentQueenPosition.row) {
+			if (prevQueenPosition.column == currentQueenPosition.column
+					|| Math.abs(prevQueenPosition.column - currentQueenPosition.column) == Math
+							.abs(prevQueenPosition.row - currentQueenPosition.row)) {
 
 				isAttacked = true;
 				break;
