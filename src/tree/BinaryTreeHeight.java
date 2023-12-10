@@ -25,7 +25,8 @@ public class BinaryTreeHeight {
 			return 0;
 		}
 
-		return 1 + Math.max(getTreeHeightRecursive(node.getLeftChild()), getTreeHeightRecursive(node.getRightChild()));
+		return Math.max(1 + getTreeHeightRecursive(node.getLeftChild()),
+				1 + getTreeHeightRecursive(node.getRightChild()));
 	}
 
 	public static int getTreeHeightIterative(TreeNode root) {
