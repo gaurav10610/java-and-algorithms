@@ -39,15 +39,14 @@ public class CheckIfABinaryTreeIsHeap {
 
 		if (root == null) {
 			return true;
-		} else {
-
-			if ((root.getLeftChild() != null && root.getLeftChild().getValue() > root.getValue())
-					|| (root.getRightChild() != null && root.getRightChild().getValue() > root.getValue())) {
-				return false;
-			} else {
-				return checkIfMaxHeap(root.getLeftChild()) && checkIfMaxHeap(root.getRightChild());
-			}
 		}
+
+		if ((root.getLeftChild() != null && root.getLeftChild().getValue() > root.getValue())
+				|| (root.getRightChild() != null && root.getRightChild().getValue() > root.getValue())) {
+			return false;
+		}
+		return checkIfMaxHeap(root.getLeftChild()) && checkIfMaxHeap(root.getRightChild());
+
 	}
 
 	/**
@@ -60,14 +59,12 @@ public class CheckIfABinaryTreeIsHeap {
 
 		if (root == null) {
 			return true;
-		} else {
-
-			if ((root.getLeftChild() != null && root.getLeftChild().getValue() < root.getValue())
-					|| (root.getRightChild() != null && root.getRightChild().getValue() < root.getValue())) {
-				return false;
-			} else {
-				return checkIfMinHeap(root.getLeftChild()) && checkIfMinHeap(root.getRightChild());
-			}
 		}
+
+		if ((root.getLeftChild() != null && root.getLeftChild().getValue() < root.getValue())
+				|| (root.getRightChild() != null && root.getRightChild().getValue() < root.getValue())) {
+			return false;
+		}
+		return checkIfMinHeap(root.getLeftChild()) && checkIfMinHeap(root.getRightChild());
 	}
 }

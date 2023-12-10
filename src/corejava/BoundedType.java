@@ -2,7 +2,7 @@ package corejava;
 
 import java.util.StringTokenizer;
 
-// This class only accepts type parametes as any class
+// This class only accepts type parameter as any class
 // which extends class A or class A itself.
 // Passing any other type will cause compiler time error
 

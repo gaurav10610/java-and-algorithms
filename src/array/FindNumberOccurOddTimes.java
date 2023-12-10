@@ -26,7 +26,7 @@ public class FindNumberOccurOddTimes {
 		 */
 		int result = Arrays.stream(array).reduce((a, b) -> a ^ b).getAsInt();
 
-		System.out.println("Number occured odd number of times is: " + result);
+		System.out.println("Number occurred odd number of times is: " + result);
 	}
 
 }

@@ -67,7 +67,7 @@ public class ConnectedComponentsUsingDisjointSets {
 
 		List<Integer> list = new ArrayList<>();
 
-		// System.out.println(Arrays.toString(parents));
+		System.out.println(Arrays.toString(parents));
 
 		/**
 		 * check total number of distinct parents after taking disjoint union set
@@ -82,7 +82,7 @@ public class ConnectedComponentsUsingDisjointSets {
 	/**
 	 * 
 	 * fetch parent of provided node, if the node itself is not it's own parent then
-	 * recursively fetch it. Negative value in parenta array at node's index denotes
+	 * recursively fetch it. Negative value in parent array at node's index denotes
 	 * that node is it's own parent
 	 * 
 	 */

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Given a list of integer, check if all the numbers of an array can be
- * equalised to a particular number. In a single operation, any element of the
+ * equalized to a particular number. In a single operation, any element of the
  * array can be either multiplied by 2 or by 3. If it's possible to make all the
  * array elements equal with the given operation then print Yes else print No.
  * 

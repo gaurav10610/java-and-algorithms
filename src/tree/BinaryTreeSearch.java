@@ -24,26 +24,25 @@ public class BinaryTreeSearch {
 
 		if (root == null) {
 			return false;
-		} else {
-
-			if (root.getValue() == valueToSearch) {
-				return true;
-			}
-
-			boolean valueFoundOnLeft = searchValue(root.getLeftChild(), valueToSearch);
-
-			if (valueFoundOnLeft) {
-				return true;
-			}
-
-			boolean valueFoundOnRight = searchValue(root.getRightChild(), valueToSearch);
-
-			if (valueFoundOnRight) {
-				return true;
-			}
-
-			return false;
 		}
+
+		if (root.getValue() == valueToSearch) {
+			return true;
+		}
+
+		boolean valueFoundOnLeft = searchValue(root.getLeftChild(), valueToSearch);
+
+		if (valueFoundOnLeft) {
+			return true;
+		}
+
+		boolean valueFoundOnRight = searchValue(root.getRightChild(), valueToSearch);
+
+		if (valueFoundOnRight) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
