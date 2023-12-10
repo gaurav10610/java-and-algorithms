@@ -44,11 +44,7 @@ public class FindRotationPointInSortedRotatedArray {
 
 	public static int findRotationIndex(int[] array, int start, int end) {
 
-		if (start == end) {
-			return start;
-		}
-
-		if (start < end) {
+		if (start <= end) {
 
 			int mid = start + (end - start) / 2;
 
