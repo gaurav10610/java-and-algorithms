@@ -32,7 +32,7 @@ public class ThreadClassMethods implements Runnable {
 		System.out.println(t.getName());
 
 		System.out.println("Thread1 name: " + thread1.getName());
-		System.out.println("Thread1 ID: " + thread1.threadId());
+		System.out.println("Thread1 ID: " + thread1.getId());
 
 		// fetching the priority and state of thread1
 		System.out.println("Priority of thread1 = " + thread1.getPriority());
