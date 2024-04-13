@@ -37,9 +37,7 @@ public class CountingSortWithNegative {
 			countArray[x - min]--;
 		}
 
-		for (int x : sortedArray) {
-			System.out.print(x + " ");
-		}
+		System.out.println("sorted array: " + Arrays.toString(sortedArray));
 	}
 
 }

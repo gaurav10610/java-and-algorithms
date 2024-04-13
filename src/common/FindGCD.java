@@ -1,5 +1,8 @@
 package common;
 
+/**
+ * Problem - Find gcd of two numbers
+ */
 public class FindGCD {
 
 	public static void main(String[] args) {

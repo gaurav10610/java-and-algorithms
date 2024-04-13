@@ -2,6 +2,9 @@ package common;
 
 import java.io.IOException;
 
+/**
+ * Problem - Generate all prime numbers up to given number N
+ */
 public class PrimeNumGenerator {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {

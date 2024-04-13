@@ -12,7 +12,7 @@ public class IsStringOnlyAlphabet {
 	}
 
 	public static boolean isOnlyAlphabet(String string) {
-		return string != null && !string.equals("") && string.chars().allMatch(Character::isAlphabetic);
+		return string != null && !string.isEmpty() && string.chars().allMatch(Character::isAlphabetic);
 	}
 
 }

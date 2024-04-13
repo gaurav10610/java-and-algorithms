@@ -13,7 +13,7 @@ public class BinarySearch {
 
 	public static void main(String[] args) {
 
-		int[] array = { 1, 2, 3, 3, 4, 11, 7 };
+		int[] array = { 1, 2, 3, 3, 4, 11 };
 
 		int x = 11;
 
@@ -33,48 +33,40 @@ public class BinarySearch {
 	 */
 	public static int binarySearch(int[] array, int x, int left, int right) {
 
-		/**
-		 * 
-		 * stop after crossover point
-		 * 
+		/*
+		  stop after crossover point
 		 */
 		if (left <= right) {
 
-			/**
-			 * 
-			 * find the middle index
-			 * 
+			/*
+			  find the middle index
 			 */
 			int mid = left + (right - left) / 2;
 
-			/**
-			 * check if element found at middle
-			 * 
+			/*
+			  check if element found at middle
 			 */
 			if (array[mid] == x) {
 
 				return mid;
 			}
 
-			/**
-			 * if middle element is bigger in value then serach in left sub array
-			 * 
+			/*
+			  if middle element is bigger in value then search in left sub array
 			 */
 			if (array[mid] > x) {
 
 				return binarySearch(array, x, left, mid - 1);
 			}
 
-			/**
-			 * if middle element is smaller in value then serach in right sub array
-			 * 
+			/*
+			  if middle element is smaller in value then search in right sub array
 			 */
 			return binarySearch(array, x, mid + 1, right);
 		}
 
-		/**
-		 * return -1 if element not to be found
-		 * 
+		/*
+		  return -1 if element not to be found
 		 */
 		return -1;
 	}

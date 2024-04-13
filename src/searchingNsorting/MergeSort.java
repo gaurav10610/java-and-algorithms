@@ -38,8 +38,8 @@ public class MergeSort {
 			 */
 			mergeSort(array, mid + 1, right);
 
-			/**
-			 * merge both the sorted arrays
+			/*
+			  merge both the sorted arrays
 			 */
 			merge(array, left, mid, right);
 		}
@@ -47,10 +47,8 @@ public class MergeSort {
 
 	public static void merge(int[] array, int left, int mid, int right) {
 
-		/**
-		 * 
-		 * mid element will be included in the left array
-		 * 
+		/*
+		  mid-element will be included in the left array
 		 */
 		int leftSize = mid - left + 1;
 		int rightSize = right - mid;
@@ -73,10 +71,9 @@ public class MergeSort {
 
 		while (i < leftSize && j < rightSize) {
 
-			/**
-			 * if element from left sub array is smaller than keep it prior to corresponding
-			 * element from right sub array in the sorted array
-			 * 
+			/*
+			  if element from left sub array is smaller than keep it prior to corresponding
+			  element from right sub array in the sorted array
 			 */
 			if (leftArray[i] <= rightArray[j]) {
 
@@ -86,18 +83,17 @@ public class MergeSort {
 				break;
 			}
 
-			/**
-			 * if element from right sub array is smaller than keep it prior to
-			 * corresponding element from left sub array in the sorted array
-			 * 
+			/*
+			  if element from right sub array is smaller than keep it prior to
+			  corresponding element from left sub array in the sorted array
 			 */
 			array[k] = rightArray[j];
 			j++;
 			k++;
 		}
 
-		/**
-		 * see if any elements remaing in left sub array
+		/*
+		  see if any elements remaing in left sub array
 		 */
 		while (i < leftSize) {
 
@@ -106,8 +102,8 @@ public class MergeSort {
 			k++;
 		}
 
-		/**
-		 * see if any elements remaining in right sub array
+		/*
+		  see if any elements remaining in right sub array
 		 */
 		while (j < rightSize) {
 

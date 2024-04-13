@@ -4,86 +4,85 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+ * Problem - Convert an infix expression to postfix expression
+ */
 public class InfixToPostfix {
 
-	public static Map<Character, Integer> priority = new HashMap<Character, Integer>();
+    public static Map<Character, Integer> priority = new HashMap<Character, Integer>();
 
-	public static void main(String[] args) {
-		String infix = "1+(2+3)-(5-4)*6/8";
-		StringBuilder postfix = new StringBuilder("");
+    public static void main(String[] args) {
+        String infix = "1+(2+3)-(5-4)*6/8";
 
-		priority.put('+', 1);
-		priority.put('-', 1);
-		priority.put('/', 2);
-		priority.put('*', 2);
-		priority.put('^', 3);
+		/*
+		  final postfix expression
+		 */
+        StringBuilder postfix = new StringBuilder();
 
-		Stack<Character> operatorStack = new Stack<Character>();
+        priority.put('+', 1);
+        priority.put('-', 1);
+        priority.put('/', 2);
+        priority.put('*', 2);
+        priority.put('^', 3);
 
-		// Conversion logic
-		for (char c : infix.toCharArray()) {
+        Stack<Character> operatorStack = new Stack<Character>();
 
-			if (!(isOperator(c) || isBracket(c))) {
+        // Conversion logic
+        for (char c : infix.toCharArray()) {
 
-				// Its an operand
-				postfix.append(c);
-			} else {
+            if (!(isOperator(c) || isBracket(c))) {
 
-				if (c == '(') {
+                // Its an operand
+                postfix.append(c);
+            } else {
 
-					operatorStack.push(c);
-				} else if (c == ')') {
+                if (c == '(') {
 
-					while (!operatorStack.isEmpty() && operatorStack.peek().charValue() != '(') {
-						postfix.append(operatorStack.pop().charValue());
-					}
+                    operatorStack.push(c);
+                } else if (c == ')') {
 
-					if (!operatorStack.isEmpty() && operatorStack.peek().charValue() != '(') {
-						System.out.println("Invalid Expression.");
-						return;
-					} else {
-						operatorStack.pop();
-					}
-				} else {
+                    while (!operatorStack.isEmpty() && operatorStack.peek() != '(') {
+                        postfix.append(operatorStack.pop().charValue());
+                    }
 
-					if (operatorStack.isEmpty() || operatorStack.peek().charValue() == '('
-							|| getOperatorPriority(operatorStack.peek().charValue()) < getOperatorPriority(c)) {
+                    if (!operatorStack.isEmpty() && operatorStack.peek() != '(') {
+                        System.out.println("Invalid Expression.");
+                        return;
+                    }
+                    operatorStack.pop();
+                } else {
+                    
+                    while (!operatorStack.isEmpty() && operatorStack.peek() != '('
+                            && getOperatorPriority(operatorStack.peek()) >= getOperatorPriority(c)) {
 
-						operatorStack.push(c);
-					} else {
+                        postfix.append(operatorStack.pop().charValue());
+                    }
+                    operatorStack.push(c);
+                }
+            }
+        }
 
-						while (!operatorStack.isEmpty() && operatorStack.peek().charValue() != '('
-								&& getOperatorPriority(operatorStack.peek().charValue()) >= getOperatorPriority(c)) {
+        while (!operatorStack.isEmpty()) {
+            if (operatorStack.peek() == '(') {
+                System.out.println("Invalid Expression.");
+                return;
+            }
+            postfix.append(operatorStack.pop());
+        }
 
-							postfix.append(operatorStack.pop().charValue());
-						}
-						operatorStack.push(c);
-					}
-				}
-			}
-		}
+        System.out.println("Infix expression: " + infix);
+        System.out.println("Postfix expression: " + postfix.toString());
+    }
 
-		while (!operatorStack.isEmpty()) {
-			if (operatorStack.peek().charValue() == '(') {
-				System.out.println("Invalid Expression.");
-				return;
-			}
-			postfix.append(operatorStack.pop());
-		}
+    public static boolean isOperator(char s) {
+        return priority.containsKey(s);
+    }
 
-		System.out.println("Infix expression: " + infix);
-		System.out.println("Postfix expression: " + postfix.toString());
-	}
+    public static boolean isBracket(char s) {
+        return s == '(' || s == ')';
+    }
 
-	public static boolean isOperator(char s) {
-		return priority.containsKey(s);
-	}
-
-	public static boolean isBracket(char s) {
-		return (s == '(' || s == ')') ? true : false;
-	}
-
-	public static int getOperatorPriority(char s) {
-		return priority.get(s).intValue();
-	}
+    public static int getOperatorPriority(char s) {
+        return priority.get(s);
+    }
 }
