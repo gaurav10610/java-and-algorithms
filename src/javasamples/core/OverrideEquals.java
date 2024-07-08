@@ -4,7 +4,7 @@ public class OverrideEquals {
 
 	public static int i = 0;
 
-	{
+	static {
 		i++;
 		System.out.println("This is the initializer block");
 	}
@@ -41,13 +41,12 @@ class Complex {
 			return true;
 		}
 
-		if (!(obj instanceof Complex)) {
+		if (!(obj instanceof Complex c)) {
 
 			return false;
 		} else {
 
-			Complex c = (Complex) obj;
-			return Double.compare(this.im, c.im) == 0 && Double.compare(this.re, c.re) == 0;
+            return Double.compare(this.im, c.im) == 0 && Double.compare(this.re, c.re) == 0;
 		}
 	}
 }

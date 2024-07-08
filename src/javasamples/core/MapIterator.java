@@ -1,27 +1,25 @@
 package javasamples.core;
 
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MapIterator {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Map<Integer, String> map = new HashMap<Integer, String>();
-		map.put(1, "gaurav");
-		map.put(2, "gaurav");
-		map.put(3, "gaurav");
-		map.put(4, "gaurav");
-		map.put(5, "gaurav");
-		map.put(6, "gaurav");
-		map.put(7, "gaurav");
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        for (int i = 1; i <= 7; i++) {
+            map.put(i, "gaurav");
+        }
 
-		map.forEach((key, value) -> {
-			System.out.println("key: " + key + " " + "value: " + value);
-		});
+        map.forEach((key, value) -> {
+            System.out.printf("{key: %d, value: %s} \n", key, value);
+        });
 
-		for (Map.Entry<Integer, String> entry : map.entrySet()) {
-			System.out.println("key: " + entry.getKey() + " " + "value: " + entry.getValue());
-		}
-	}
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.printf("{key: %d, value: %s} \n", entry.getKey(), entry.getValue());
+        }
+    }
 
 }

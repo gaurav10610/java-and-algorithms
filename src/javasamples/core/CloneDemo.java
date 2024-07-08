@@ -10,9 +10,8 @@ public class CloneDemo {
     TestClone cloneObj = (TestClone) obj1.clone();
     System.out.println("Clone value of a: " + cloneObj.a);
     System.out.println("Clone value of b: " + cloneObj.b);
-
+    System.out.print(obj1 == cloneObj);
   }
-
 }
 
 
@@ -24,6 +23,5 @@ class TestClone implements Cloneable {
   @Override
   public Object clone() throws CloneNotSupportedException {
     return super.clone();
-
   }
 }

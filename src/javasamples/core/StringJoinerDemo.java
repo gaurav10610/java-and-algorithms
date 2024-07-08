@@ -8,7 +8,7 @@ public class StringJoinerDemo {
 
 	public static void main(String[] args) {
 
-		String stringObj = new String("Gaurav");
+		String stringObj = "Gaurav";
 		System.out.println("String value: " + stringObj);
 
 		stringObj = " Kumar";
@@ -21,7 +21,7 @@ public class StringJoinerDemo {
 		concat(stringObj, " Yadav");
 		System.out.println("String value after concatenation: " + stringObj);
 
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		list.add("Gaurav");
 		list.add("Kumar");
 		list.add("Yadav");
@@ -30,21 +30,21 @@ public class StringJoinerDemo {
 
 		StringJoiner sj = new StringJoiner(" : ", "Names Start: ", " :Names Ends");
 		sj.setEmptyValue("StringJoiner " + sj.hashCode() + " is empty as of now");
-		System.out.println(sj.toString());
+		System.out.println(sj);
 
 		sj.add(list.get(0)).add(list.get(1));
-		System.out.println(sj.toString());
+		System.out.println(sj);
 
 		StringJoiner sj1 = new StringJoiner(" : ", "Names Start: ", " :Names Ends");
 		sj1.setEmptyValue("StringJoiner " + sj1.hashCode() + " is empty as of now");
-		System.out.println(sj1.toString());
+		System.out.println(sj1);
 
 		sj1.add(list.get(3)).add(list.get(4));
-		System.out.println(sj1.toString());
+		System.out.println(sj1);
 
 		sj.merge(sj1);
 		System.out.println("StringJoiner " + sj.hashCode() + " after merge.");
-		System.out.println(sj.toString());
+		System.out.println(sj);
 
 	}
 

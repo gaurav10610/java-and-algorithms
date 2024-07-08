@@ -1,5 +1,7 @@
 package javasamples.core;
 
+import java.io.Serial;
+
 public class ExceptionDemo {
 
   public static void main(String[] args) {
@@ -16,6 +18,7 @@ public class ExceptionDemo {
 
 class MyException extends Exception {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   public MyException(String message) {

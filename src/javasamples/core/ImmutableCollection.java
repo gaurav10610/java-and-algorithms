@@ -14,16 +14,14 @@ public class ImmutableCollection {
     list.add(new Name("Prabhat"));
     list.add(new Name("Shobhit"));
 
-    System.out.println("Before modifications:");
-    list.forEach(element -> System.out.print(" " + element.name));
+    System.out.printf("Before modifications: %s", list);
     System.out.println();
 
     // Immutable list
     List<Name> immutableList = Collections.unmodifiableList(list);
     immutableList.add(new Name("Himanshu"));
 
-    System.out.println("After modifications:");
-    immutableList.forEach(element -> System.out.print(" " + element.name));
+    System.out.printf("After modifications: %s", immutableList);
   }
 
 }
@@ -34,5 +32,12 @@ class Name {
 
   Name(String name) {
     this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return "Name{" +
+            "name='" + name + '\'' +
+            '}';
   }
 }
