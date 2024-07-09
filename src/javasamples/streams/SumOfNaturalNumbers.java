@@ -17,6 +17,7 @@ public class SumOfNaturalNumbers {
 		System.out.println("sum of given numbers: " + sum);
 
 		List<String> numList = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
+
 		System.out.println("maximum: " + numList.stream().mapToInt(Integer::parseInt).max().getAsInt());
 		System.out.println("minimum: " + numList.stream().mapToInt(Integer::parseInt).min().getAsInt());
 	}

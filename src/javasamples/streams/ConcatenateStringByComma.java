@@ -22,7 +22,8 @@ public class ConcatenateStringByComma {
 
 		resultString.ifPresent(System.out::println);
 
-		Optional<String> stringSeparatedByPipe = list.stream().filter(string -> !string.isEmpty())
+		Optional<String> stringSeparatedByPipe = list.stream()
+				.filter(string -> !string.isEmpty())
 				.reduce((string1, string2) -> string1 + "||" + string2);
 
 		stringSeparatedByPipe.ifPresent(System.out::println);

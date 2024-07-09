@@ -10,7 +10,7 @@ public class SupplierInterfaceDemo {
 	/**
 	 * consumer for printing each element of list
 	 */
-	private final static Consumer<List<Integer>> printList = listArg -> System.out.print(listArg);
+	private final static Consumer<List<Integer>> printList = System.out::print;
 
 	/**
 	 * supplier for supplying the list
