@@ -5,7 +5,7 @@ package dsalgo.searchingNsorting;
  * 
  * Algorithm - Binary Search
  * 
- * Time Complexity - O(N), N - No. of elements in the array
+ * Time Complexity - O(log N), N - No. of elements in the array
  * 
  *
  */
@@ -34,17 +34,17 @@ public class BinarySearch {
 	public static int binarySearch(int[] array, int x, int left, int right) {
 
 		/*
-		  stop after crossover point
+		 * stop after crossover point
 		 */
 		if (left <= right) {
 
 			/*
-			  find the middle index
+			 * find the middle index
 			 */
 			int mid = left + (right - left) / 2;
 
 			/*
-			  check if element found at middle
+			 * check if element found at middle
 			 */
 			if (array[mid] == x) {
 
@@ -52,7 +52,7 @@ public class BinarySearch {
 			}
 
 			/*
-			  if middle element is bigger in value then search in left sub array
+			 * if middle element is bigger in value then search in left sub array
 			 */
 			if (array[mid] > x) {
 
@@ -60,13 +60,13 @@ public class BinarySearch {
 			}
 
 			/*
-			  if middle element is smaller in value then search in right sub array
+			 * if middle element is smaller in value then search in right sub array
 			 */
 			return binarySearch(array, x, mid + 1, right);
 		}
 
 		/*
-		  return -1 if element not to be found
+		 * return -1 if element not to be found
 		 */
 		return -1;
 	}
