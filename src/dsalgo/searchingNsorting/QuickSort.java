@@ -23,7 +23,7 @@ public class QuickSort {
 		int i = partition(array, start, end);
 
 		// If conditions are very important
-		if (i > start)
+		if (start < i)
 			quickSort(array, start, i - 1);
 		if (end > i)
 			quickSort(array, i + 1, end);
