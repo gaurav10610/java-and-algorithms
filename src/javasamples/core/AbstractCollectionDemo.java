@@ -13,7 +13,7 @@ public class AbstractCollectionDemo {
 		map.put("Gaurav", "Yadav");
 		map.put(null, "Yadav");
 		map.put(null, "Paras");
-		// System.out.println(map.get(null));
+		// System.out.println(map.get(null))
 
 		AbstractCollection<Integer> ab = new TreeSet<Integer>();
 		ab.add(1);
@@ -28,9 +28,9 @@ public class AbstractCollectionDemo {
 		ab1.add(1);
 		// ab.clear();
 
-//    ab.forEach((element) -> {
-//      ab.remove(1);
-//    });
+		// ab.forEach((element) -> {
+		// ab.remove(1);
+		// });
 
 		System.out.print(ab);
 	}

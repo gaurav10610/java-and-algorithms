@@ -14,9 +14,9 @@ public class CharStreams {
     double value = 10023.789;
     DecimalFormat ft = new DecimalFormat("0000000.000");
     System.out.println("Formatted value is: " + ft.format(value));
-    
-    byte[] b_arr = {71, 101, 101, 107, 115};
-    
+
+    byte[] b_arr = { 71, 101, 101, 107, 115 };
+
     System.out.println("Decoded charset: " + new String(b_arr, Charset.defaultCharset()));
 
     FileWriter fw = new FileWriter("data\\Reader.txt");
@@ -27,12 +27,6 @@ public class CharStreams {
     BufferedReader br = new BufferedReader(fr);
     System.out.println(br.readLine());
 
-    // int chars = fr.read();
-    //
-    // while (chars != -1) {
-    // System.out.print((char) chars);
-    // chars = fr.read();
-    // }
     fr.close();
     br.close();
   }
